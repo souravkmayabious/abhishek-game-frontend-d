@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket Twister - Casino Game</title>
+    <title>Token Twister - Casino Game</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -376,6 +376,12 @@
             pointer-events: auto;
         }
 
+        .bet-amount {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .sidebar {
@@ -390,7 +396,7 @@
         @media (max-width: 768px) {
             .header {
                 flex-wrap: wrap;
-                gap: 10px;
+                gap: 1px;
             }
 
             .game-stats {
@@ -407,6 +413,76 @@
             .chips-container {
                 overflow-x: auto;
                 padding-bottom: 5px;
+            }
+
+            .btn {
+                padding: 4px 7px;
+                border-radius: 5px;
+                gap: 3px;
+            }
+
+            .timer {
+                padding: 4px 7px;
+                border-radius: 5px;
+                margin: 0 5px;
+            }
+
+            .stat-item {
+                gap: 2px;
+                padding: 2px 5px;
+                border-radius: 5px;
+            }
+
+            .action-btn {
+                width: 23px;
+                height: 23px;
+                border-radius: 50%;
+            }
+
+            .bet-btn {
+
+                border-radius: 2px;
+                padding: 4px 7px;
+                gap: 2px;
+            }
+
+            .bet-amount {
+                gap: 2px;
+                padding: 4px;
+            }
+
+            .bet-amount-value {
+                font-size: 12px;
+            }
+
+            .chat-btn {
+                border-radius: 20%;
+                width: 20px;
+                height: 20px;
+            }
+
+            .left-controls,
+            .right-controls {
+                gap: 5px;
+            }
+
+            .nav-btn {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+
+            .chip {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+
+            }
+
+            .volume-btn {
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -429,6 +505,12 @@
 
             .action-buttons {
                 justify-content: center;
+            }
+
+            .btn {
+                padding: 4px 7px;
+                border-radius: 5px;
+                gap: 3px;
             }
         }
 
@@ -469,8 +551,8 @@
         <!-- Header -->
         <header class="header">
             <div class="logo-container">
-                <img src="image/logo.png" alt="Ticket Twister Logo" class="logo">
-                <span>Ticket Twister</span>
+                <img src="image/logo.png" alt="Token Twister Logo" class="logo">
+                <span>Token Twister</span>
             </div>
 
             <div class="game-stats">
@@ -565,10 +647,11 @@
         <div class="game-controls">
             <div class="left-controls">
                 <button class="chat-btn">
-                    <i class="fas fa-comment"></i> Chat
+                    <i class="fas fa-comment"></i>
+                    <!-- Chat -->
                 </button>
 
-                <div class="bet-amount" style="display: flex; align-items: center; gap: 8px;">
+                <div class="bet-amount">
                     <button class="bet-btn"> + </button>
                     <span class="bet-amount-value">$28,355.00</span>
                     <button class="bet-btn"> - </button>
