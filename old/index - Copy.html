@@ -17,14 +17,11 @@
             --button-red: #f44336;
         }
 
-
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* font-family: 'Arial', sans-serif; */
-
+            font-family: 'Arial', sans-serif;
         }
 
         body {
@@ -33,13 +30,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        html,
-        body {
-            height: 100vh;
-            max-height: 100vh;
         }
 
         /* Header Styles */
@@ -165,15 +155,10 @@
 
         /* Sidebar */
         .sidebar {
-            position: absolute;
-            top: 70px;
-            /* below header */
-            right: 0;
             width: 200px;
             background-color: rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 5;
         }
 
         .team-section {
@@ -237,7 +222,6 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 5;
         }
 
         .left-controls,
@@ -556,71 +540,6 @@
                 /* Hide main content in portrait */
             }
         }
-
-        .game-visuals {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .background-img {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .table-img {
-            position: absolute;
-            width: 100vw;
-            max-width: 1000px;
-            left: 50%;
-            bottom: 0;
-            /* changed from top: 50% */
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        .table-left {
-            position: absolute;
-            z-index: 3;
-            transform: translateY(60%);
-            max-width: 250px;
-            left: 180px;
-        }
-
-        .table-below {
-            position: absolute;
-            z-index: 3;
-            max-width: 580px;
-            left: 400px;
-            bottom: 75px;
-
-        }
-
-        @media (max-width: 768px) {
-
-            .table-left {
-                position: absolute;
-                z-index: 3;
-                transform: translateY(60%);
-                max-width: 100px;
-                left: 20px;
-            }
-
-            .table-below {
-                position: absolute;
-                z-index: 3;
-                /* //transform: translateY(60%); */
-                max-width: 350px;
-                left: 150px;
-                bottom: 75px;
-            }
-        }
     </style>
 </head>
 
@@ -697,9 +616,9 @@
         <!-- Main Game Container -->
         <div class="game-container">
             <!-- Main Game Area -->
-            <!-- <div class="main-game-area">-->
-            <!-- Navigation Buttons -->
-            <!-- <div class="nav-buttons">
+            <div class="main-game-area">
+                <!-- Navigation Buttons -->
+                <div class="nav-buttons">
                     <button class="nav-btn">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -707,9 +626,7 @@
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-            </div> -->
-
-
+            </div>
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -724,14 +641,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="game-visuals">
-            <img class="background-img" src="image/Background.png" alt="Background">
-            <img class="table-img" src="image/Table_With_Chips_and_wheel-removebg-preview.png" alt="Game Table">
-            <img class="table-left" src="image/Left No. Grid.png">
-            <img class="table-below" src="image/Main No. Grid.png">
         </div>
 
         <!-- Footer Game Controls -->

@@ -81,7 +81,7 @@ export const HomePage = () => {
 
         {/* Main Game Container */}
         <div className="game-container">
-          {/* <div className="main-game-area">
+          <div className="main-game-area">
             <div className="nav-buttons">
               <button className="nav-btn">
                 <i className="fas fa-chevron-left"></i>
@@ -90,7 +90,7 @@ export const HomePage = () => {
                 <i className="fas fa-chevron-right"></i>
               </button>
             </div>
-          </div> */}
+          </div>
 
           <div className="sidebar">
             <div className="team-section">
@@ -107,13 +107,6 @@ export const HomePage = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="game-visuals">
-            <img className="background-img" src="image/Background.png" alt="Background" />
-            <img className="table-img" src="image/Table_With_Chips_and_wheel-removebg-preview.png" alt="Game Table" />
-            <img className="table-left" src="image/Left No. Grid.png" />
-            <img className="table-below" src="image/Main No. Grid.png" />
         </div>
 
         {/* Game Controls */}
