@@ -17,7 +17,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url('BG/Background.png');
+    background-image: url('/BG/Background.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -210,7 +210,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-image: url('MainFrame/Frame Option 2.png');
+    background-image: url('/MainFrame/Frame Option 2.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -707,5 +707,34 @@ body {
         width: 30px;
         height: 30px;
         font-size: 14px;
+    }
+}
+
+
+
+/* Show this overlay only in portrait */
+.portrait-warning {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background: #000;
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media screen and (orientation: portrait) {
+    .portrait-warning {
+        display: flex;
+    }
+
+    .main-content {
+        display: none;
+        /* Hide main content in portrait */
     }
 }
