@@ -237,7 +237,7 @@ body {
 .right-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .chat-btn {
@@ -255,8 +255,8 @@ body {
 
 .bet-amount {
     background-color: #333;
-    padding: 8px 15px;
-    border-radius: 5px;
+    /* padding: 8px 15px; */
+    /* border-radius: 5px; */
     font-weight: bold;
 }
 
@@ -269,7 +269,7 @@ body {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 4px 8px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
@@ -284,8 +284,8 @@ body {
 }
 
 .chip {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -322,12 +322,12 @@ body {
 
 .action-buttons {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .action-btn {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     border: 2px solid var(--accent-color);
     background-color: #333;
@@ -339,8 +339,8 @@ body {
 }
 
 .spin-btn {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     /* background-color: var(--accent-color); */
     background-color: #c91971;
     color: #333;
@@ -482,8 +482,8 @@ body {
     }
 
     .chip {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
 
     }
@@ -575,34 +575,34 @@ body {
     bottom: 0;
     transform: translateX(-50%);
     z-index: 2;
-    height: 95vh;
+    height: 90vh;
 }
 
 .table-left {
     position: absolute;
     z-index: 3;
     /* transform: translateY(60%); */
-    transform: translate(10%, 60%);
-    max-width: 250px;
+    transform: translate(-5%, 40%);
+    max-width: 25%;
     /* left: 180px; */
 }
 
 .table-below {
     position: absolute;
     z-index: 3;
-    max-width: 580px;
+    max-width: 50%;
     /* left: 400px;
     bottom: 75px; */
-    transform: translate(70%, 240%);
+    transform: translate(50%, 190%);
 }
 
 @media (max-width: 768px) {
 
-    .table-img {
+    /* .table-img {
         position: absolute;
         width: 100vw;
-        height: 90vh;
-    }
+        height: 80vh;
+    } */
 
 
     .table-left {
