@@ -50,6 +50,9 @@
             padding: 10px 15px;
             background-color: rgba(0, 0, 0, 0.3);
             border-bottom: 2px solid var(--accent-color);
+            position: fixed;
+            z-index: 100;
+            width: 100%;
         }
 
         .logo-container {
@@ -577,39 +580,48 @@
         .table-img {
             position: absolute;
             width: 100vw;
-            max-width: 1000px;
+            /* max-width: 1000px; */
             left: 50%;
             bottom: 0;
-            /* changed from top: 50% */
             transform: translateX(-50%);
             z-index: 2;
+            height: 95vh;
         }
 
         .table-left {
             position: absolute;
             z-index: 3;
-            transform: translateY(60%);
+            /* transform: translateY(60%); */
+            transform: translate(10%, 60%);
             max-width: 250px;
-            left: 180px;
+            /* left: 180px; */
         }
 
         .table-below {
             position: absolute;
             z-index: 3;
             max-width: 580px;
-            left: 400px;
-            bottom: 75px;
-
+            /* left: 400px;
+            bottom: 75px; */
+            transform: translate(70%, 240%);
         }
 
         @media (max-width: 768px) {
 
+            .table-img {
+                position: absolute;
+                width: 100vw;
+                height: 90vh;
+            }
+
+
             .table-left {
                 position: absolute;
                 z-index: 3;
-                transform: translateY(60%);
+                /* transform: translateY(60%); */
                 max-width: 100px;
-                left: 20px;
+                /* left: 20px; */
+                transform: translate(30%, 70%);
             }
 
             .table-below {
@@ -617,8 +629,9 @@
                 z-index: 3;
                 /* //transform: translateY(60%); */
                 max-width: 350px;
-                left: 150px;
-                bottom: 75px;
+                /* left: 150px;
+                bottom: 75px; */
+                transform: translate(50%, 220%);
             }
         }
     </style>

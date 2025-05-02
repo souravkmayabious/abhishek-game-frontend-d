@@ -7,12 +7,14 @@
     --button-red: #f44336;
 }
 
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* font-family: 'Arial', sans-serif; */
-  
+
 }
 
 body {
@@ -24,6 +26,12 @@ body {
     overflow-x: hidden;
 }
 
+html,
+body {
+    height: 100vh;
+    max-height: 100vh;
+}
+
 /* Header Styles */
 .header {
     display: flex;
@@ -32,6 +40,9 @@ body {
     padding: 10px 15px;
     background-color: rgba(0, 0, 0, 0.3);
     border-bottom: 2px solid var(--accent-color);
+    position: fixed;
+    z-index: 100;
+    width: 100%;
 }
 
 .logo-container {
@@ -559,84 +570,48 @@ body {
 .table-img {
     position: absolute;
     width: 100vw;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     left: 50%;
     bottom: 0;
-    /* changed from top: 50% */
     transform: translateX(-50%);
     z-index: 2;
+    height: 95vh;
 }
 
 .table-left {
     position: absolute;
     z-index: 3;
-    transform: translateY(60%);
-    max-width: 100px;
-    left: 20px;
-}
-
-.table-below {
-    position: absolute;
-    z-index: 3;
-    /* //transform: translateY(60%); */
-    max-width: 350px;
-    left: 150px;
-    bottom: 75px;
-}
-
-.game-visuals {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.background-img {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.table-img {
-    position: absolute;
-    width: 100vw;
-    max-width: 1000px;
-    left: 50%;
-    bottom: 0;
-    /* changed from top: 50% */
-    transform: translateX(-50%);
-    z-index: 2;
-}
-
-.table-left {
-    position: absolute;
-    z-index: 3;
-    transform: translateY(60%);
+    /* transform: translateY(60%); */
+    transform: translate(10%, 60%);
     max-width: 250px;
-    left: 180px;
+    /* left: 180px; */
 }
 
 .table-below {
     position: absolute;
     z-index: 3;
     max-width: 580px;
-    left: 400px;
-    bottom: 75px;
-
+    /* left: 400px;
+    bottom: 75px; */
+    transform: translate(70%, 240%);
 }
 
 @media (max-width: 768px) {
 
+    .table-img {
+        position: absolute;
+        width: 100vw;
+        height: 90vh;
+    }
+
+
     .table-left {
         position: absolute;
         z-index: 3;
-        transform: translateY(60%);
+        /* transform: translateY(60%); */
         max-width: 100px;
-        left: 20px;
+        /* left: 20px; */
+        transform: translate(30%, 70%);
     }
 
     .table-below {
@@ -644,7 +619,8 @@ body {
         z-index: 3;
         /* //transform: translateY(60%); */
         max-width: 350px;
-        left: 150px;
-        bottom: 75px;
+        /* left: 150px;
+        bottom: 75px; */
+        transform: translate(50%, 220%);
     }
 }
