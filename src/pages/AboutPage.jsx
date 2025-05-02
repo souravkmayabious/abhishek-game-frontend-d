@@ -62,7 +62,7 @@ export const AboutPage = () => {
           <i className="fa-solid fa-rotate"></i>
         </div>
 
-        <div className="game-container main-content">
+        <div className="game-container main-content2">
           {/* <!-- Header Section --> */}
           <header className="game-header">
             <div className="header-left">
