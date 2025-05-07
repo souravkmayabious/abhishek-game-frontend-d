@@ -304,20 +304,20 @@ body {
 }
 
 .betting-chips-row_2 {
-    width: 80%;
+    width: 52%;
     margin: 10px 0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .chips-container_2 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5px;
 }
 
 .chip_2 {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
 }
 
@@ -331,9 +331,9 @@ body {
     display: flex;
     align-items: self-start;
     justify-content: center;
-    width: 90%;
+    width: 60%;
     max-width: 800px;
-    margin-top: 10px;
+    margin-top: 100px;
 }
 
 .bet-cell_2 {
@@ -368,7 +368,7 @@ body {
 }
 
 .bet-amount-large_2 {
-    font-size: 24px;
+    font-size: 12px;
     font-weight: bold;
     position: absolute;
     top: 14px;
