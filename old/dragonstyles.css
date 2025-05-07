@@ -210,8 +210,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-image: url('MainFrame/Frame with All objects.png');
-    z-index: 5;
+    background-image: url('MainFrame/Frame Option 2.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -328,15 +327,10 @@ body {
 
 /* Betting Grid Styles */
 .betting-grid {
-    /* display: grid;
-    grid-template-columns: repeat(5, 1fr); */
-    /* grid-template-rows: repeat(2, 1fr); */
-    /* gap: 5px; */
-
-    display: flex;
-    align-items: self-start;
-    justify-content: center;
-
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
     width: 90%;
     max-width: 800px;
     margin-top: 10px;
@@ -350,12 +344,8 @@ body {
     /* padding: 10px; */
     border-radius: 5px;
     text-align: center;
-    /* min-height: 80px; */
+    min-height: 80px;
     margin: 0px;
-    position: relative;
-}
-.bet-cell img{
-  width: 100%;
 }
 
 .bet-label {
@@ -371,15 +361,12 @@ body {
 .bet-amount {
     font-size: 16px;
     font-weight: bold;
-    position: absolute;
-    bottom: 25px;
+    margin-top: 5px;
 }
 
 .bet-amount-large {
     font-size: 24px;
     font-weight: bold;
-    position: absolute;
-    top: 14px;
 }
 
 .purple {
@@ -422,7 +409,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
 }
 
 /* Footer Styles */
@@ -602,8 +588,8 @@ body {
     }
     
     .bet-cell {
-        /* padding: 5px; */
-        /* min-height: 70px; */
+        padding: 5px;
+        min-height: 70px;
     }
     
     .bet-label {
@@ -700,10 +686,10 @@ body {
         gap: 2px;
     }
     
-    /* .bet-cell {
+    .bet-cell {
         min-height: 60px;
         padding: 3px;
-    } */
+    }
     
     .bet-label {
         font-size: 12px;
