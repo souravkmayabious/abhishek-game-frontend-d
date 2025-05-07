@@ -8,7 +8,8 @@ import  Login  from "./components/Login";
 import  Register  from "./components/Register";
 import Dashboard from "./pages/Dashboard";
 import Blanks from "./pages/Blanks";
-import { Dragon } from "./pages/dragon";
+import { Dragon } from "./pages/Dragon";
+
 
 function RouteConfig() {
   return (
