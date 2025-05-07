@@ -17,7 +17,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url('BG/Background.png');
+    background-image: url('/BG/Background.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -210,7 +210,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-image: url('MainFrame/Frame with All objects.png');
+    background-image: url('/MainFrame/Frame with All objects.png');
     z-index: 5;
     background-size: cover;
     background-position: center;
