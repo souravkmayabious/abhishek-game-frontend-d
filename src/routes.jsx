@@ -18,8 +18,8 @@ function RouteConfig() {
       <Route path="/token" element={<HomePage />} />
       <Route path="/tiger" element={<AboutPage />} />
       <Route path="/dragon" element={<Dragon />} />
-      {/* <Route path="/contact" element={<ContactPage />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/tokenseperate" element={<ContactPage />}  />
+      {/* <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} /> */}
     </Routes>
