@@ -54,15 +54,6 @@
             position: fixed;
             z-index: 100;
             width: 100%;
-            overflow-x: scroll;
-            scroll-behavior: smooth;
-            max-height: 20%;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* Internet Explorer 10+ */
-        }
-
-        .scroll-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
         }
 
         .logo-container {
@@ -602,21 +593,18 @@
             position: absolute;
             z-index: 3;
             /* transform: translateY(60%); */
-            /* transform: translate(10%, 60%); */
-            max-width: 15%;
-            left: 4%;
-            top: 40%;
+            transform: translate(10%, 60%);
+            max-width: 250px;
             /* left: 180px; */
-            cursor: pointer;
         }
 
         .table-below {
             position: absolute;
             z-index: 3;
-            max-width: 50%;
-            /* transform: translate(70%, 240%); */
-            left: 26%;
-            top: 55%;
+            max-width: 580px;
+            /* left: 400px;
+            bottom: 75px; */
+            transform: translate(70%, 240%);
         }
 
         @media (max-width: 768px) {
@@ -628,25 +616,25 @@
             }
 
 
-            /* .table-left {
+            .table-left {
                 position: absolute;
                 z-index: 3;
-                transform: translateY(60%); 
+                /* transform: translateY(60%); */
                 max-width: 100px;
-                left: 20px;
+                /* left: 20px; */
                 transform: translate(30%, 70%);
-            } */
+            }
 
-            /* .table-below {
+            .table-below {
                 position: absolute;
                 z-index: 3;
-               transform: translateY(60%);
+                /* //transform: translateY(60%); */
                 max-width: 350px;
-                 left: 150px;
-                bottom: 75px; 
+                /* left: 150px;
+                bottom: 75px; */
                 transform: translate(50%, 220%);
                 cursor: pointer;
-            } */
+            }
 
             /* .newCountTable{
                 transform: translate(150%, 220%);
@@ -673,15 +661,10 @@
         } */
 
         .count-wrapper {
-            /* position: absolute;
+            position: absolute;
             transform: translate(72%, 120%);
             max-width: 570px;
-            z-index: 4; */
-            position: absolute;
-            max-width: 45%;
             z-index: 4;
-            left: 25%;
-            top: 35%;
         }
         .newCountTable {
             display: block;
@@ -698,69 +681,65 @@
         }
         /* Position each button individually */
         .ofb0 {
-            top: 20%;
-            left: 0%;
+            top: 62px;
+            left: 6px;
             font-size: 30px;
             font-weight: bold;
         }
         .ofb3 {
-            /* top: 10px;
-            left: 50px; */
-            top: 2%;
-            left: 7%;
+            top: 10px;
+            left: 50px;
             /* background-color: red; */
         }
 
         .ofb6 {
-            /* top: 10px;
-            left: 90px; */
-            top: 1%;
-            left: 14%;
+            top: 10px;
+            left: 90px;
         }
         .ofb9 {
-            top: 1%;
-            left: 21%;
+            top: 10px;
+            left: 130px;
         }
 
         .ofb12 {
-            top: 1%;
-            left: 28%;
+            top: 10px;
+            left: 170px;
         }
         .ofb15 {
-            top: 1%;
-            left: 35%;
+            top: 10px;
+            left: 210px;
         }
         .ofb18 {
-            top: 1%;
-            left: 42%;
+            top: 10px;
+            left: 250px;
         }
         .ofb21 {
-            top: 1%;
-            left: 49%;
+            top: 10px;
+            left: 290px;
         }
         .ofb24 {
-            top: 1%;
-            left: 56%;
+            top: 10px;
+            left: 330px;
         }
         .ofb27 {
-            top: 1%;
-            left: 63%;
+            top: 10px;
+            left: 370px;
         }
         .ofb30 {
-            top: 1%;
-            left: 70%;
+            top: 10px;
+            left: 410px;
         }
         .ofb33 {
-            top: 1%;
-            left: 77%;
+            top: 10px;
+            left: 450px;
         }
         .ofb36 {
-            top: 1%;
-            left: 84%;
+            top: 10px;
+            left: 490px;
         }
         .ofb2to1 {
-            top: 2%;
-            left: 91%;
+            top: 8px;
+            left: 525px;
             writing-mode: vertical-lr;
             text-orientation: mixed;
             font-weight: bold;
@@ -772,12 +751,9 @@
         .roulette{
             z-index: 5;
             position: absolute;
-            /* top: 75px;
+            top: 75px;
             left: 480px;
-            width: 400px; */
-            top: 17%;
-            left: 35%;
-            width: 30%;
+            width: 400px;
             animation: spin 10s linear infinite;
             transform-origin: center;
         }
@@ -796,40 +772,15 @@
             max-width: 570px;
             z-index: 5;
         }
-        */
         .overflowLeftTable{
             display: block;
-            position: absolute;
-            z-index: 7;
-            width: 50%;
-            top: 50%;
-            left:24%;
-            /* width: 100%; */
+            width: 100%;
             backdrop-filter: blur(10px);
-        } 
-        #popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            font-size: 24px;
-            cursor: pointer;
-        }
+        } */
     </style>
 </head>
 
 <body>
-    <div id="popup" onclick="goFullscreen()">
-        Click here to enter Fullscreen
-      </div>
-
     <div class="portrait-warning">
         Please rotate your device to landscape mode.
     </div>
@@ -963,11 +914,9 @@
             </div>
 
 
-              <!-- <div class="count-wrapper2" id="count-wrapper2"> -->
+              <div class="count-wrapper2" id="count-wrapper2">
                      <img src="newImage/Asset_1@2x.png" style="display: none;" alt="" class="overflowLeftTable" id="overflowLeftTable">
-              <!-- </div> -->
-
-              
+              </div>
         </div>
 
         <!-- Footer Game Controls -->
@@ -1093,7 +1042,6 @@
         $('#attachCount').show();
         $('#count-wrapper').hide();
         $('#roulette').show();
-        $('#overflowLeftTable').hide();
          setTimeout(function() {
             $('#roulette').hide();
         }, 5000);
@@ -1102,28 +1050,11 @@
     $('#leftTable').on('click', function() {
         $('#overflowLeftTable').show();
         $('#leftTable').hide();
-        $('#count-wrapper').hide();
     });
 
     </script>
 
 
-<script>
-  function goFullscreen() {
-    const elem = document.documentElement;
-
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      elem.msRequestFullscreen();
-    }
-
-    // Hide the popup after entering fullscreen
-    document.getElementById('popup').style.display = 'none';
-  }
-</script>
 </body>
 
 </html>
