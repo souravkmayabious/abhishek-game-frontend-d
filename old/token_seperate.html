@@ -613,10 +613,11 @@
         .table-below {
             position: absolute;
             z-index: 3;
-            max-width: 50%;
+            max-width: 41%;
             /* transform: translate(70%, 240%); */
-            left: 26%;
-            top: 55%;
+            left: 30%;
+            top: 52%;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
@@ -696,66 +697,69 @@
             border-radius: 10px;
             z-index: 5;
         }
+        .overflowButtons:hover{
+            border: 1px solid lawngreen;
+        }
         /* Position each button individually */
         .ofb0 {
-            top: 20%;
-            left: 0%;
+            top: 22%;
+            left: 1%;
             font-size: 30px;
             font-weight: bold;
         }
         .ofb3 {
             /* top: 10px;
             left: 50px; */
-            top: 2%;
-            left: 7%;
+            top: 5%;
+            left: 9%;
             /* background-color: red; */
         }
 
         .ofb6 {
             /* top: 10px;
             left: 90px; */
-            top: 1%;
-            left: 14%;
+            top: 5%;
+            left: 16%;
         }
         .ofb9 {
-            top: 1%;
-            left: 21%;
+            top: 5%;
+            left: 23%;
         }
 
         .ofb12 {
-            top: 1%;
-            left: 28%;
+            top: 5%;
+            left: 30%;
         }
         .ofb15 {
-            top: 1%;
+            top: 5%;
             left: 35%;
         }
         .ofb18 {
-            top: 1%;
+            top: 5%;
             left: 42%;
         }
         .ofb21 {
-            top: 1%;
+            top: 5%;
             left: 49%;
         }
         .ofb24 {
-            top: 1%;
+            top: 5%;
             left: 56%;
         }
         .ofb27 {
-            top: 1%;
+            top: 5%;
             left: 63%;
         }
         .ofb30 {
-            top: 1%;
+            top: 5%;
             left: 70%;
         }
         .ofb33 {
-            top: 1%;
+            top: 5%;
             left: 77%;
         }
         .ofb36 {
-            top: 1%;
+            top: 5%;
             left: 84%;
         }
         .ofb2to1 {
@@ -770,7 +774,7 @@
             display: none;
         }
         .roulette{
-            z-index: 5;
+            z-index: 6;
             position: absolute;
             /* top: 75px;
             left: 480px;
@@ -782,6 +786,14 @@
             transform-origin: center;
         }
 
+        .table-img-fixedDiec{
+            z-index: 4;
+            position: absolute;
+            width: 30%;
+            top:15%;
+            left: 35%;
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -790,13 +802,13 @@
                 transform: rotate(360deg);
             }
         }
-         /* .count-wrapper2 {
-            position: absolute;
-            transform: translate(72%, 120%);
-            max-width: 570px;
+         .count-wrapper2 {
+            /* position: absolute; */
+            /* transform: translate(72%, 120%); */
+            /* max-width: 570px; */
             z-index: 5;
         }
-        */
+       
         .overflowLeftTable{
             display: block;
             position: absolute;
@@ -807,7 +819,7 @@
             /* width: 100%; */
             backdrop-filter: blur(10px);
         } 
-        #popup {
+        #popup2 {
             position: fixed;
             top: 0;
             left: 0;
@@ -826,9 +838,9 @@
 </head>
 
 <body>
-    <div id="popup" onclick="goFullscreen()">
+    <!-- <div id="popup" onclick="goFullscreen()">
         Click here to enter Fullscreen
-      </div>
+      </div> -->
 
     <div class="portrait-warning">
         Please rotate your device to landscape mode.
@@ -935,10 +947,13 @@
         <div class="game-visuals">
             <img class="background-img" src="image/Background.png" alt="Background">
             <!-- <img class="table-img" src="image/Table_With_Chips_and_wheel-removebg-preview.png" alt="Game Table"> -->
-            <img class="table-img" src="newImage/Roulette_Game.png" alt="Game Table">
+            <img class="table-img" src="newImage/OnlyTableNew.png" alt="Game Table">
+            <img class="table-img-fixedDiec" src="newImage/fixedDiec.png" alt="Game Table" id="fixedDiec">
             <img class="table-left" src="image/Left No. Grid.png" id="leftTable">
-            <img class="table-below" src="image/Main No. Grid.png"  id="attachCount">
-            <img class="roulette" src="newImage/Roulette.png" id="roulette" style="display: none;">
+            <img class="table-below" src="newImage/with_no.s.png"  id="attachCount">
+            <div id="popup" class="popup">
+                <img class="roulette" src="newImage/popUpDice.png" id="roulette" style="display: none;">
+            </div>
         <!-- </div>
 
         <div> -->
@@ -963,9 +978,9 @@
             </div>
 
 
-              <!-- <div class="count-wrapper2" id="count-wrapper2"> -->
+              <div class="count-wrapper2" id="count-wrapper2">
                      <img src="newImage/Asset_1@2x.png" style="display: none;" alt="" class="overflowLeftTable" id="overflowLeftTable">
-              <!-- </div> -->
+              </div>
 
               
         </div>
@@ -1094,8 +1109,12 @@
         $('#count-wrapper').hide();
         $('#roulette').show();
         $('#overflowLeftTable').hide();
+        $('#fixedDiec').fadeOut('slow'); 
          setTimeout(function() {
-            $('#roulette').hide();
+            // $('#roulette').hide();
+            // $('#fixedDiec').show();
+            $('#roulette').fadeOut('slow'); 
+            $('#fixedDiec').fadeIn('slow');
         }, 5000);
     }
 
@@ -1103,6 +1122,7 @@
         $('#overflowLeftTable').show();
         $('#leftTable').hide();
         $('#count-wrapper').hide();
+        $('#count-wrapper2').show();
     });
 
     </script>
