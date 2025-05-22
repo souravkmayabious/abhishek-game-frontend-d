@@ -88,3 +88,19 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(`Sound ${soundOn ? 'on' : 'off'}`);
     });
 });
+
+
+  function goFullscreen() {
+    const elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+
+    // Hide the popup after entering fullscreen
+    document.getElementById('popup').style.display = 'none';
+  }
