@@ -1083,7 +1083,7 @@
         <div class="modal-content">
             <span class="close_button_div"> <span class="close">&times;</span></span>
             <div class="modal-header">
-                <h2> <i class="fa-solid fa-gear"></i> Game Settings </h2>
+                <h3> <i class="fa-solid fa-gear"></i> Game Settings </h3>
             </div>
 
             <div class="modal-body">
@@ -1092,15 +1092,15 @@
                     <div class="custom-card-header"><i class="fa-solid fa-dice"></i> Game Mode</div>
                     <!-- Selectable Box Row -->
                     <div class="icon-box-row">
-                        <div class="icon-box" onclick="toggleSelect(this)">
+                        <div class="icon-box selected" onclick="toggleSelect(this)">
                             <div class="fab-icon"><i class="fa-solid fa-dice-six"></i></div>
                             <div class="icon-label">Classic</div>
                         </div>
-                        <div class="icon-box" onclick="toggleSelect(this)">
+                        <div class="icon-box icon-box2" onclick="toggleSelect(this)">
                             <div class="fab-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
                             <div class="icon-label">Lightning</div>
                         </div>
-                        <div class="icon-box" onclick="toggleSelect(this)">
+                        <div class="icon-box icon-box3" onclick="toggleSelect(this)">
                             <div class="fab-icon"><i class="fa-solid fa-gift"></i></div>
                             <div class="icon-label">Bonus</div>
                         </div>
@@ -1111,7 +1111,7 @@
                     <div class="custom-card-header"><i class="fa-solid fa-money-check-dollar"></i> Curreny & Chip</div>
 
                     <div class="form-row">
-                        <label class="form-label">Currency</label>
+                        <label class="form-label"><i class="fa-solid fa-coins"></i>&nbsp;&nbsp;Currency</label>
                         <select class="form-select">
                             <option value="1">USD $</option>
                             <option value="2">INR</option>
@@ -1119,7 +1119,8 @@
                         </select>
                     </div>
                     <div class="form-row">
-                        <label class="form-label">Volume</label>
+                        <label class="form-label"><i class="fa-brands fa-nfc-directional"></i>&nbsp;&nbsp;Default
+                            Bet</label>
                         <input type="range" class="form-range" min="0" max="100" />
                         <label class="form-label">$100</label>
                     </div>
@@ -1129,34 +1130,34 @@
                 <div class="custom-card">
                     <div class="custom-card-header"><i class="fa-solid fa-money-check-dollar"></i> Audio & Visual</div>
                     <div class="form-row">
-                        <label class="form-label">Sound Effects</label>
+                        <label class="form-label"><i class="fa-brands fa-soundcloud"></i>&nbsp;&nbsp;Sound
+                            Effects</label>
                         <label class="switch">
                             <input type="checkbox" checked>
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="form-row">
-                        <label class="form-label">Background Music</label>
+                        <label class="form-label"><i class="fa-solid fa-music"></i>&nbsp;&nbsp;Background Music</label>
                         <label class="switch">
                             <input type="checkbox">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="form-row">
-                        <label class="form-label">Chat Notifications Sound</label>
+                        <label class="form-label"><i class="fa-brands fa-rocketchat"></i>&nbsp;&nbsp;Chat Notification
+                            Sound</label>
                         <label class="switch">
                             <input type="checkbox">
                             <span class="slider"></span>
                         </label>
                     </div>
-                </div>
-
-                <div class="custom-card">
-                    <div class="custom-card-header"><i class="fa-solid fa-person-shelter"></i> Rooms Settings</div>
                     <div class="form-row">
-                        <label class="form-label">Manage Rooms</label>
+                        <label class="form-label"><i
+                                class="fa-brands fa-creative-commons-remix"></i>&nbsp;&nbsp;Animation and
+                            effects</label>
                         <label class="switch">
-                            <input type="checkbox" checked>
+                            <input type="checkbox">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -1165,7 +1166,7 @@
                 <div class="custom-card">
                     <div class="custom-card-header"><i class="fa-solid fa-sd-card"></i> Rooms Settings</div>
                     <div class="form-row">
-                        <label class="form-label">Manage Rooms</label>
+                        <label class="form-label"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Manage Rooms</label>
                         <select class="form-select">
                             <option value="1">6</option>
                             <option value="2">5</option>
@@ -1176,18 +1177,21 @@
 
 
                 <div class="custom-card">
-                    <div class="custom-card-header"><i class="fa-solid fa-person-shelter"></i> Slot Games Settings</div>
+                    <div class="custom-card-header"><i class="fa-solid fa-person-shelter"></i> Slot Games Settings
+                        <button class="slot_game_button">Save</button>
+                    </div>
                 </div>
 
-               
+
 
 
 
                 <div class="modal_footer_btn">
-                    <button class="save_modal modal_footer_btn_single"><i class="fa-solid fa-floppy-disk"></i>
-                        SAVE</button>
-                    <button class="reset_modal modal_footer_btn_single"><i class="fa-solid fa-rotate"></i> RESET TO
-                        DEFAULT</button>
+                    <button class="save_modal modal_footer_btn_single">
+                        <img src="./newImage/save button green.png" />
+                    </button>
+                    <button class="reset_modal modal_footer_btn_single"> <img
+                            src="./newImage/reset to default pink.png" /></button>
                 </div>
             </div>
         </div>
@@ -1224,7 +1228,7 @@
                             <option value="3">TAKA</option> -->
                     </select>
                 </div>
-                 <div class="form-row modal-single-bg-card">
+                <div class="form-row modal-single-bg-card">
                     <label class="form-label"><i class="fa-solid fa-toggle-off"></i>&nbsp; Bet limit</label>
                     <label class="form-label">$10</label>
                     <input type="range" class="form-range" min="0" max="1000" />
@@ -1236,14 +1240,14 @@
                     <input type="range" class="form-range" min="0" max="20" />
                     <label class="form-label">10</label>
                 </div>
-                <br><br>
+           
                 <div class="modal_footer_btn">
-                    <button class="save_modal modal_footer_btn_single">
-                        CANCEL</button>
-                    <button class="reset_modal modal_footer_btn_single">CREATE
-                        ROOM</button>
+                    <button class="cancel_modal modal_footer_btn_single">
+                        <img src="./newImage/cancel.png" /></button>
+                    <button class="create_room_modalc modal_footer_btn_single"><img
+                            src="./newImage//create room.png" /></button>
                 </div>
-                 <div class="rule_model_footer_div">
+                <div class="rule_model_footer_div">
                     <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
                 </div>
             </div>
@@ -1258,29 +1262,32 @@
         <div class="modal-content">
             <span class="close_button_div"> <span class="close">&times;</span></span>
             <div class="modal-header">
-                <h3> <i class="fa-solid fa-bullseye"></i>  Challanges </h3>
-            </div>
+                <h3> <i class="fa-solid fa-bullseye"></i> Challanges </h3>
 
+            </div>
+            <p class="modal-header-sub">Complete challenges to earn reward and boost your status!</p>
             <!-- <div class="tabmodal">
                 <button class="tablinks active">Daily</button>
                 <button class="tablinks">Weakly</button>
                 <button class="tablinks">Monthly</button>
             </div> -->
 
-            <div class="leaderboard-tabs">
-                <button class="tab-button tab-active">Daily</button>
-                <button class="tab-button tab-inactive">Weakly</button>
-                <button class="tab-button tab-inactive">Monthly</button>
-            </div>
+
 
             <div class="modal-body">
+                <div class="leaderboard-tabs">
+                    <button class="tab-button tab-active">Daily</button>
+                    <button class="tab-button tab-inactive">Weakly</button>
+                    <button class="tab-button tab-inactive">Monthly</button>
+                </div>
+
                 <div class="achievement-cards-container">
                     <!-- Lucky Streak Card -->
                     <div class="achievement-card">
                         <div class="achievement-card__header">
                             <div class="achievement-card__left">
                                 <div class="achievement-card__icon-container">
-                                   <i class="fa-solid fa-fire"></i>
+                                    <i class="fa-solid fa-fire"></i>
                                 </div>
                                 <div class="achievement-card__info">
                                     <h3 class="achievement-card__title">Lucky Streak</h3>
@@ -1378,21 +1385,21 @@
             <div class="modal-header">
                 <h3> <i class="fa-solid fa-circle-info"></i> Game rules </h3>
             </div>
-
+            <p class="modal-header-sub">Learn how to play token twister roulette</p>
             <!-- <div class="tabmodal">
                 <button class="tablinks active">Basic Rule</button>
                 <button class="tablinks">Betting options</button>
                 <button class="tablinks">Game modes</button>
             </div> -->
 
-            <div class="leaderboard-tabs">
-                <button class="tab-button tab-active">Basic Rule</button>
-                <button class="tab-button tab-inactive">Betting options</button>
-                <button class="tab-button tab-inactive">Game modes</button>
-            </div>
+
 
             <div class="modal-body">
-
+                <div class="leaderboard-tabs">
+                    <button class="tab-button tab-active">Basic Rule</button>
+                    <button class="tab-button tab-inactive">Betting options</button>
+                    <button class="tab-button tab-inactive">Game modes</button>
+                </div>
                 <!-- <div class="modal_footer_btn">
                     <button class="save_modal modal_footer_btn_single"><i class="fa-solid fa-floppy-disk"></i>
                         CANCEL</button>
@@ -1401,8 +1408,9 @@
                 </div> -->
 
                 <div class="game_rules_modal">
-                    <div class="game_rule_header">How to play Token Twister Roulette</div>
-                        <hr />
+                    <div class="game_rule_header"><i class="fa-solid fa-info"></i> &nbsp;How to play Token Twister
+                        Roulette</div>
+                    <hr />
                     <div class="game_rules">
                         Game Flow <br />
                         1. Each game round lasts 60 seconds.<br />
@@ -1419,8 +1427,10 @@
                             <li>Turbo Mode: Accelerated gameplay for quick rounds.</li>
                             <li>Team Play: Collaborate with others to achieve collective goals.</li>
                             <li>Challenge Mode: Face off against specific objectives or opponents.</li>
-                            <li>Visual Enhancements: Incorporation of dynamic visual effects to elevate the gaming experience,
-                                potentially inspired by innovations in gaming systems that provide roulette games with visual
+                            <li>Visual Enhancements: Incorporation of dynamic visual effects to elevate the gaming
+                                experience,
+                                potentially inspired by innovations in gaming systems that provide roulette games with
+                                visual
                                 effects.</li>
                         </ul>
                     </div>
@@ -1458,7 +1468,7 @@
                         <button class="tab-button tab-inactive">All Time</button>
                         <button class="share-button"><i class="fas fa-share-alt"></i></button>
                     </div>
-                    
+
                     <!-- Top Player Card -->
                     <div class="top-player-card">
                         <div class="player-avatar">
@@ -1481,11 +1491,11 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    
+
                     <!-- Top Winners Section -->
                     <div class="winners-section">
                         <h3 class="section-title">Top Winners</h3>
-                        
+
                         <div class="winner-row">
                             <div class="winner-avatar">
                                 <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
@@ -1500,7 +1510,7 @@
                             </div>
                             <div class="winner-amount">$2,500</div>
                         </div>
-                        
+
                         <div class="winner-row">
                             <div class="winner-avatar">
                                 <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
@@ -1515,7 +1525,7 @@
                             </div>
                             <div class="winner-amount">$1,800</div>
                         </div>
-                        
+
                         <div class="winner-row">
                             <div class="winner-avatar">
                                 <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
@@ -1530,7 +1540,7 @@
                             </div>
                             <div class="winner-amount">$1,200</div>
                         </div>
-                        
+
                         <div class="winner-row">
                             <div class="winner-avatar">
                                 <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
@@ -1545,7 +1555,7 @@
                             </div>
                             <div class="winner-amount">$950</div>
                         </div>
-                        
+
                         <div class="winner-row">
                             <div class="winner-avatar">
                                 <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
@@ -1560,9 +1570,9 @@
                             </div>
                             <div class="winner-amount">$750</div>
                         </div>
-                        
+
                     </div>
-                  
+
                 </div>
                 <div class="rule_model_footer_div">
                     <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />

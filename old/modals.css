@@ -1,6 +1,11 @@
 @font-face {
   font-family: 'Howdy Duck';
-  src: url('Fonts/Howdy Duck.ttf') format('truetype');
+  src: url('Fonts/Howdy Duck.ttf') format('truetype');  
+}
+
+@font-face {
+  font-family: 'Lalezar-Regular';
+  src: url('Fonts/Lalezar-Regular.ttf') format('truetype'); 
 }
 .modal {
   display: none; /* Hidden by default */
@@ -34,7 +39,7 @@
     font-family: 'Howdy Duck', sans-serif;
   padding: 6px;
   /* background-color: #7A005B; */
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,15 +53,21 @@
   position: fixed;
   width: 50%;
   overflow-x: hidden;
-  max-height: 57%;
+  max-height: 60%;
   overflow-y: auto;
   background-color: #7a005b;
-   border-radius: 0px  0px 10px 10px;
+  border-radius: 0px  0px 10px 10px;
+  box-shadow: 2px 2px 1px 1px #88888854;
+  background-image: url('./newImage/modalbg.png');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-bottom: 6px;
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: #000000;
   background-color: #F776E0;
   float: right;
   font-size: 25px;
@@ -70,6 +81,7 @@
   align-items: center;
   justify-content: center;
   margin: 5px;
+   /* text-shadow: 2px 2px black; */
 }
 
 .close:hover,
@@ -141,14 +153,14 @@
 .icon-box-row {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 10px 2px;
   gap: 2px;
 }
 
 .icon-box {
   flex: 1;
   max-width: 90px; /* 👈 Reduces the width of each square */
-  aspect-ratio: 1 / 1; /* 👈 Ensures it stays square */
+  aspect-ratio: 2 / 1; /* 👈 Ensures it stays square */
   /* background-color: #f1f1f1; */
   border-radius: 8px;
   display: flex;
@@ -160,14 +172,13 @@
   transition: background-color 0.3s, border 0.3s;
   border: 2px solid transparent;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -175,50 +186,67 @@
 }
 
 .icon-box:hover {
-  background-color: #e0e0e0;
+  background-color: #e0e0e069;
 }
 
 .icon-box.selected {
-  border: 2px solid #0d6efd;
-  background-color: #e6f0ff;
+  border: 2px solid #FFFFFF;
+  /* background-color: #e6f0ff; */
+  background-image: linear-gradient(0.25turn,#FF8B68,#B70CBA);
+}
+
+.icon-box2{
+   background-image: linear-gradient(0.25turn,#07162200,#00497D45);
+  border: 2px solid #00497D45;
+   
+}
+
+.icon-box3{
+ border: 2px solid #3CC80C;
+ background-image: linear-gradient(0.25turn,#3D004C,#0C592378);
 }
 
 .fab-icon {
-  background-color: #207E00;
-  color: white;
+  /* background-color: #207E00; */
+  color: #FFFFFF;
   font-size: 20px;
   padding: 12px;
   border-radius: 50%;
-  margin-bottom: 8px;
-  width: 44px;
-  height: 44px;
+  /* margin-bottom: 5px; */
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5px;
 }
 
 .icon-label {
   font-size: 14px;
   color: #ffffff;
   text-align: center;
+  padding: 5px;
+  font-family: 'Howdy Duck', sans-serif;
+  text-shadow: 2px 2px #78058C;
 }
 
 .form-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 12px 0;
+  margin: 5px 2px;
   gap: 10%;
 }
 
 .form-label {
-    font-family: 'Howdy Duck', sans-serif;
-  font-weight: 400;
+  font-family: 'Howdy Duck', sans-serif;
+  /* font-weight: 400; */
   /* flex: 1; */
   color: #ffffff;
-  size: 17px;
-  padding-left: 20px;
-    text-shadow: 2px 2px #000000;
+  font-size: 80%;
+  padding:5px;
+  text-shadow: 2px 2px #000000;
+  white-space: nowrap;
 }
 
 /* Input field style */
@@ -230,9 +258,14 @@
   border-radius: 4px;
 }
 
+.form-input::placeholder{
+  text-align: right;
+}
+
 /* Range input specific (optional) */
 .form-select {
   width: 100%;
+  text-align: right;
 }
 
 /* Switch container (toggle) */
@@ -278,7 +311,7 @@
 
 /* Switch ON (checked state) */
 input:checked + .slider {
-  background-color: #0d6efd;
+  background-color: #207E00;
 }
 
 input:checked + .slider::before {
@@ -296,22 +329,29 @@ input:checked + .slider::before {
   width: 100%;
   bottom: -8px;
   z-index: 10000;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .modal_footer_btn_single {
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: bold;
+  /* padding: 10px;
+  border-radius: 5px; */
+  /* font-weight: bold; */
+  border: none;
+  /* box-shadow: 4px 9px 16px 12px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  cursor: pointer;
+  font-family: 'Howdy Duck', sans-serif;
+   border: none;      
+    background: transparent !important;
+    width: 19%;
 }
+.modal_footer_btn_single img {
+  border-radius: 5px;
+    width: 100%; 
+  }
 
-.save_modal {
-  background-color: #81ff57;
-}
 
-.reset_modal {
-  background-color: #ff00d0;
-}
+
+
 
 /* .close_button_div {
   background-image: linear-gradient(#ff76e3, #cc33ad, #c905a2);
@@ -412,11 +452,11 @@ input:checked + .slider::before {
         /* Achievement card styles */
         .achievement-card {
             background: linear-gradient(to left, #B70CBA, #FF8B68);
-            border-radius: 16px;
-            padding: 16px;
+            border-radius: 9px;
+            padding: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s ease-in-out;
-            margin: 5px;
+            /* margin: 5px; */
         }
 
         .achievement-card:hover {
@@ -519,12 +559,15 @@ input:checked + .slider::before {
   width: 100%;
   position: absolute;
   bottom: 0;
+  z-index: -1;
 }
 
 .game_rules_modal{
   padding: 15px;
   margin-bottom: 9%;
-  background-image: linear-gradient(#B70CBA, #FF8B68);
+  background-image: linear-gradient(0.25turn, #B70CBA, #FF8B68);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 
@@ -823,4 +866,49 @@ input:checked + .slider::before {
      input[type=range] {
       /* width: 200px; */
       accent-color: #4CAF50; /* Change this to any color */
+    }
+
+
+    .cancel_modal{
+      background-color: #FF00D0;
+      color: #ffffff;
+    }
+
+    .create_room_modalc{
+       background-color: #207E00;
+      color: #ffffff;
+    }
+
+    .modal-header-sub{
+      font-family: 'Howdy Duck', sans-serif;
+      text-align: center;
+      padding: 5px;
+      font-size: 10px;
+      text-shadow: 2px 2px #AE008B;
+    }
+
+
+
+
+
+    .game_rule_header{
+      text-align: center;
+      margin: 10px;
+      text-shadow: 2px 2px #AE008B;
+      font-family: 'Lalezar-Regular', sans-serif;
+    }
+
+    .game_rules{
+      padding: 10px;
+      font-family: 'Lalezar-Regular', sans-serif;
+    }
+
+    .slot_game_button{
+        background-image: url('./newImage/button_green.png'); 
+        background-size: cover; 
+        background-position: center;
+        float: right;
+    }
+    .save_modal {
+      width: 19%;
     }
