@@ -51,7 +51,7 @@
 
 .modal-body {
    background-image: url('./newImage/modalbg.png');
-  padding: 12px;
+  padding: 8px;
   position: fixed;
   width: 50%;
   overflow-x: hidden;
@@ -939,7 +939,7 @@ input:checked + .slider::before {
     .createroom_modal_buttons_postions{
       position:  fixed;
       left: 0;
-      transform: translate(0, -39%);
+      transform: translate(0, -80%);
       bottom: auto;
     } 
 
