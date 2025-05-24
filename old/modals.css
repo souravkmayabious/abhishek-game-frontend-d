@@ -18,7 +18,8 @@
   height: 100%; 
   overflow-y: auto; /* Enable scroll if needed */
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.4); 
+ background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
@@ -49,20 +50,22 @@
 }
 
 .modal-body {
+   background-image: url('./newImage/modalbg.png');
   padding: 12px;
   position: fixed;
   width: 50%;
   overflow-x: hidden;
-  max-height: 60%;
+  max-height: 75%;
   overflow-y: auto;
   background-color: #7a005b;
   border-radius: 0px  0px 10px 10px;
   box-shadow: 2px 2px 1px 1px #88888854;
-  background-image: url('./newImage/modalbg.png');
+ 
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
   padding-bottom: 6px;
+  background-size: cover;
 }
 
 /* The Close Button */
@@ -342,7 +345,7 @@ input:checked + .slider::before {
   font-family: 'Howdy Duck', sans-serif;
    border: none;      
     background: transparent !important;
-    width: 19%;
+    /* width: 19%; */
 }
 .modal_footer_btn_single img {
   border-radius: 5px;
@@ -417,6 +420,7 @@ input:checked + .slider::before {
   background-color: #81FF57;
   border-radius: 10px;
 }
+
 
 
 
@@ -567,7 +571,7 @@ input:checked + .slider::before {
   margin-bottom: 9%;
   background-image: linear-gradient(0.25turn, #B70CBA, #FF8B68);
   border-radius: 10px;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 
@@ -578,15 +582,15 @@ input:checked + .slider::before {
 }
 
 .leaderboard-modal {
-  background: linear-gradient(to bottom, #6a1b9a, #4a148c);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  /* background: linear-gradient(to bottom, #6a1b9a, #4a148c); */
+  /* border-radius: 15px; */
+  /* overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); */
   position: relative;
 }
 
 /* Background decoration */
-.leaderboard-modal::before {
+/* .leaderboard-modal::before {
   content: '';
   position: absolute;
   top: 0;
@@ -597,10 +601,10 @@ input:checked + .slider::before {
               radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.1) 8px, transparent 40px),
               radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 6px, transparent 30px);
   pointer-events: none;
-}
+} */
 
 /* Bottom gradient decoration */
-.leaderboard-modal::after {
+/* .leaderboard-modal::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -610,20 +614,20 @@ input:checked + .slider::before {
   background: linear-gradient(90deg, #00c9ff, #ff00e6, #ff9500);
   clip-path: polygon(0 100%, 100% 100%, 100% 50%, 0 50%);
   z-index: 0;
-}
+} */
 
 /* Tab Navigation */
 .leaderboard-tabs {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 20px;
+  padding: 5px 5px;
   position: relative;
 }
 
 .tab-button {
   padding: 8px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   font-weight: bold;
   font-size: 14px;
@@ -633,7 +637,7 @@ input:checked + .slider::before {
 }
 
 .tab-active {
-  background: linear-gradient(to bottom, #4caf50, #2e7d32);
+  background: linear-gradient(to bottom, #FFFFFF, #2fa009);
   color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -656,21 +660,26 @@ input:checked + .slider::before {
 
 /* Top Player Card */
 .top-player-card {
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  margin: 0 20px 20px;
-  border-radius: 15px;
-  padding: 15px;
+  background: linear-gradient(to left, #B70CBA, #ff7eb3);
+  margin: 8px 8px;
+  border-radius: 10px;
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  text-shadow: 2px 2px #AE008B;
+  font-family: 'Howdy Duck', sans-serif;
+  font-size: 12px;
 }
 
 .player-avatar {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid white;
+  /* border: 2px solid white; */
+  align-items: center;
+  justify-items: center;
 }
 
 .player-avatar img {
@@ -686,14 +695,14 @@ input:checked + .slider::before {
 
 .player-name {
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .player-amount {
   color: white;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -736,31 +745,41 @@ input:checked + .slider::before {
 
 /* Top Winners Section */
 .winners-section {
-  background: rgba(0, 0, 0, 0.2);
-  margin: 0 20px 20px;
-  border-radius: 15px;
-  padding: 15px;
+  background: #3D004C;
+  margin: 8px 8px;
+  border-radius: 10px;
+  /* padding: 10px; */
   position: relative;
   z-index: 1;
+  font-family: 'Howdy Duck', sans-serif;
 }
 
-.section-title {
-  color: #ffd700;
-  font-size: 18px;
-  margin-bottom: 15px;
+.section-title-achivement {
+  font-size: 14px;
+  /* margin-bottom: 15px; */
   display: flex;
   align-items: center;
+  border:none !important;
+  border-radius: 10px 10px 0px 0px;
 }
 
-.section-title::before {
-  content: '🏆';
-  margin-right: 8px;
+.game-name{
+  font-size: 9px;
 }
+
+    .game-name-achivement-1{
+      font-size: 9px;
+    }
+    .game-name-achivement-2{
+      font-size: 9px;
+    }
+
+
 
 .winner-row {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -788,8 +807,9 @@ input:checked + .slider::before {
 
 .winner-name {
   color: white;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: bold;
+  line-height: 109%;
 }
 
 .winner-time {
@@ -803,12 +823,16 @@ input:checked + .slider::before {
   color: white;
   font-size: 14px;
   margin-right: 15px;
+  background-color: #0F030C30;
+  padding: 5px;
+  border-radius: 50px;
 }
 
 .winner-amount {
-  color: #4caf50;
+  color: #81FF57;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
+  text-shadow: 2px 2px #370040;
 }
 
 /* Responsive adjustments */
@@ -908,7 +932,22 @@ input:checked + .slider::before {
         background-size: cover; 
         background-position: center;
         float: right;
+        padding: 5px;
+        border-radius: 5px;
     }
-    .save_modal {
-      width: 19%;
+   
+    
+    .createroom_modal_buttons_postions{
+    position:  fixed;
+    left: 0;
+    transform: translate(0, -39%);
+        bottom: auto;
+    } 
+
+
+    .settings_modal_buttons_postions{
+       position:  fixed;
+    left: 0;
+   transform: translate(0, -56%);
+    bottom: 0;
     }

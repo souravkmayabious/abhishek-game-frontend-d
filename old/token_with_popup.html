@@ -1054,7 +1054,7 @@
                         <!-- <i class="fas fa-undo"></i> -->
                         <img src="image/backk.png" width="22" />
                     </button>
-                    <button class="action-btn">
+                    <button class="action-btn" id="crossAll">
                         <!-- <i class="fas fa-times"></i> -->
                         <img src="image/crosss.png" width="22" />
                     </button>
@@ -1186,7 +1186,7 @@
 
 
 
-                <div class="modal_footer_btn">
+                <div class="modal_footer_btn settings_modal_buttons_postions">
                     <button class="save_modal modal_footer_btn_single">
                         <img src="./newImage/save button green.png" />
                     </button>
@@ -1241,7 +1241,7 @@
                     <label class="form-label">10</label>
                 </div>
            
-                <div class="modal_footer_btn">
+                <div class="modal_footer_btn createroom_modal_buttons_postions">
                     <button class="cancel_modal modal_footer_btn_single">
                         <img src="./newImage/cancel.png" /></button>
                     <button class="create_room_modalc modal_footer_btn_single"><img
@@ -1401,9 +1401,9 @@
                     <button class="tab-button tab-inactive">Game modes</button>
                 </div>
                 <!-- <div class="modal_footer_btn">
-                    <button class="save_modal modal_footer_btn_single"><i class="fa-solid fa-floppy-disk"></i>
+                    <button class="save_modal2 modal_footer_btn_single"><i class="fa-solid fa-floppy-disk"></i>
                         CANCEL</button>
-                    <button class="reset_modal modal_footer_btn_single"><i class="fa-solid fa-rotate"></i>CREATE
+                    <button class="reset_modal2 modal_footer_btn_single"><i class="fa-solid fa-rotate"></i>CREATE
                         ROOM</button>
                 </div> -->
 
@@ -1436,7 +1436,7 @@
                     </div>
                 </div>
 
-                <div class="rule_model_footer_div">
+                <div class="rule_model_footer_div" style="z-index: 5;">
                     <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
                 </div>
             </div>
@@ -1481,9 +1481,9 @@
                         <div class="game-info">
                             <div class="game-type">
                                 <span class="game-icon"><i class="fas fa-gamepad"></i></span>
-                                <span class="game-name">Fruit Spin</span>
+                                <span class="game-name-achivement-1">Fruit Spin</span>
                             </div>
-                            <div class="win-label">Biggest Win This Round</div>
+                            <div class="win-label game-name-achivement-2">Biggest Win This Round</div>
                         </div>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
@@ -1494,11 +1494,11 @@
 
                     <!-- Top Winners Section -->
                     <div class="winners-section">
-                        <h3 class="section-title">Top Winners</h3>
+                        <h3 class="section-title-achivement custom-card-header"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp; Top Winners</h3>
 
                         <div class="winner-row">
                             <div class="winner-avatar">
-                                <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
+                                <img src="./newImage/winer.png" alt="Winner Avatar">
                             </div>
                             <div class="winner-details">
                                 <div class="winner-name">HighRoller777</div>
@@ -1513,7 +1513,7 @@
 
                         <div class="winner-row">
                             <div class="winner-avatar">
-                                <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
+                                <img src="./newImage/winer1.png" alt="Winner Avatar">
                             </div>
                             <div class="winner-details">
                                 <div class="winner-name">HighRoller777</div>
@@ -1528,7 +1528,7 @@
 
                         <div class="winner-row">
                             <div class="winner-avatar">
-                                <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
+                                <img src="./newImage/winer2.png" alt="Winner Avatar">
                             </div>
                             <div class="winner-details">
                                 <div class="winner-name">HighRoller777</div>
@@ -1543,7 +1543,7 @@
 
                         <div class="winner-row">
                             <div class="winner-avatar">
-                                <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
+                                <img src="./newImage/winer3.png" alt="Winner Avatar">
                             </div>
                             <div class="winner-details">
                                 <div class="winner-name">HighRoller777</div>
@@ -1558,7 +1558,7 @@
 
                         <div class="winner-row">
                             <div class="winner-avatar">
-                                <img src="/placeholder.svg?height=40&width=40" alt="Winner Avatar">
+                                <img src="./newImage/winer4.png" alt="Winner Avatar">
                             </div>
                             <div class="winner-details">
                                 <div class="winner-name">HighRoller777</div>
@@ -1575,6 +1575,7 @@
 
                 </div>
                 <div class="rule_model_footer_div">
+                    <br>
                     <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
                 </div>
             </div>
@@ -1639,17 +1640,23 @@
             const overflow = document.getElementById('overflowCount');
             const countwrapper = document.getElementById('count-wrapper');
             const roulette = document.getElementById('roulette');
+            const overflowLeftTable = document.getElementById('overflowLeftTable');
+            const leftTable = document.getElementById('leftTable');
 
             if (attach.style.display !== 'none') {
                 attach.style.display = 'none';
                 overflow.style.display = 'block';
                 countwrapper.style.display = 'block';
                 roulette.style.display = 'none';
+                overflowLeftTable.style.display = 'none';
+                leftTable.style.display = 'block';
             } else {
                 attach.style.display = 'block';
                 overflow.style.display = 'none';
                 countwrapper.style.display = 'none';
                 roulette.style.display = 'none';
+                overflowLeftTable.style.display = 'block';
+                leftTable.style.display = 'none';
             }
         });
 
@@ -1675,7 +1682,19 @@
             $('#leftTable').hide();
             $('#count-wrapper').hide();
             $('#count-wrapper2').show();
+            $('#overflowCount').hide();
+            $('#attachCount').show();
         });
+
+
+        $('#crossAll').on('click',function(){
+             $('#roulette').hide();
+             $('#fixedDiec').show();
+             $('#overflowLeftTable').hide();
+             $('#count-wrapper').hide();
+             $('#attachCount').show();
+             $('#leftTable').show();
+        })
 
     </script>
 
