@@ -895,11 +895,13 @@ input:checked + .slider::before {
     .cancel_modal{
       background-color: #FF00D0;
       color: #ffffff;
+      width: 8% !important;
     }
 
     .create_room_modalc{
        background-color: #207E00;
       color: #ffffff;
+      width: 8% !important;
     }
 
     .modal-header-sub{
