@@ -55,16 +55,15 @@
   position: fixed;
   width: 50%;
   overflow-x: hidden;
-  max-height: 75%;
+  max-height: 70%;
   overflow-y: auto;
   background-color: #7a005b;
   border-radius: 0px  0px 10px 10px;
-  box-shadow: 2px 2px 1px 1px #88888854;
- 
-  background-attachment: fixed;
+  /* box-shadow: 2px 2px 1px 1px #88888854; */
+  /* background-attachment: fixed; */
   background-repeat: no-repeat;
   background-position: center;
-  padding-bottom: 6px;
+  /* padding-bottom: 6px; */
   background-size: cover;
 }
 
@@ -345,7 +344,7 @@ input:checked + .slider::before {
   font-family: 'Howdy Duck', sans-serif;
    border: none;      
     background: transparent !important;
-    /* width: 19%; */
+    width: 13%;
 }
 .modal_footer_btn_single img {
   border-radius: 5px;
@@ -938,16 +937,16 @@ input:checked + .slider::before {
    
     
     .createroom_modal_buttons_postions{
-    position:  fixed;
-    left: 0;
-    transform: translate(0, -39%);
-        bottom: auto;
+      position:  fixed;
+      left: 0;
+      transform: translate(0, -39%);
+      bottom: auto;
     } 
 
 
     .settings_modal_buttons_postions{
-       position:  fixed;
-    left: 0;
-   transform: translate(0, -56%);
-    bottom: 0;
+      position:  fixed;
+      left: 0;
+      transform: translate(0, -137%);
+      bottom: 0;
     }
