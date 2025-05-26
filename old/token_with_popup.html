@@ -1178,7 +1178,7 @@
                     <div class="form-row">
                         <label class="form-label"><i class="fa-solid fa-music"></i>&nbsp;&nbsp;Background Music</label>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox"  id="music-toggle" checked>
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -1656,6 +1656,10 @@
   </div>
 </div> -->
 
+<audio id="background-music" loop style="display:none;">
+  <source src="mp3/casino-bg.mp3" type="audio/mpeg" />
+</audio>
+
 
     <script>
         // JavaScript for interactive elements
@@ -1797,6 +1801,31 @@
 });
 </script>
 
+<script>
+  $(document).ready(function() {
+    var music = $('#background-music')[0];
+    var toggle = $('#music-toggle');
+
+    // If checked on load, try to play music
+    if (toggle.is(':checked')) {
+      music.play().catch(function(err) {
+        console.log("Autoplay prevented or error:", err);
+      });
+    }
+
+    // On toggle change, play or pause
+    toggle.change(function() {
+      if ($(this).is(':checked')) {
+        music.play().catch(function(err) {
+          console.log("Autoplay prevented or error:", err);
+        });
+      } else {
+        music.pause();
+        music.currentTime = 0; // reset to start
+      }
+    });
+  });
+</script>
 
 
     <script src="modals.js"> </script>
