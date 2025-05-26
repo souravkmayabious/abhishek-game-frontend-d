@@ -811,6 +811,28 @@
             transform-origin: center;
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% {  transform: rotate(360deg); }
+        }
+
+        
+        .roulette_ball {
+            z-index: 7;
+            position: absolute;
+            top: 24%;
+            left: 39.4%;
+            width: 4%;
+            animation: spinBall 5s linear infinite;
+            transform-origin: 268% 268%; /* Custom pivot point */
+        }
+
+        @keyframes spinBall {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-720deg); } /* Anticlockwise */
+        }
+
+
         .table-img-fixedDiec {
             z-index: 4;
             position: absolute;
@@ -819,15 +841,7 @@
             left: 35%;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
 
         .count-wrapper2 {
             /* position: absolute; */
@@ -864,14 +878,14 @@
         }
 
         .bet-btn:active ,.btn:active {
-            transform: scale(1.2); 
+            transform: scale(1.1); 
             background-color: rgba(230, 81, 106, 0.377);
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 2px dotted lime;
         }
 
         .chip:active {
-            transform: scale(1.2); 
+            transform: scale(1.1); 
             background-color:  rgba(230, 81, 106, 0.377);
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 5px dotted lime;
@@ -1002,6 +1016,7 @@
             <img class="table-below" src="newImage/with_no.s.png" id="attachCount">
             <div id="popup2" class="popup">
                 <img class="roulette" src="newImage/popUpDice.png" id="roulette" style="display: none;">
+                <img class="roulette_ball" src="newImage/glass_ball.png" id="roulette_ball" style="display: none;">
             </div>
             <!-- </div>
 
@@ -1039,7 +1054,7 @@
         <!-- Footer Game Controls -->
         <div class="game-controls">
             <div class="left-controls">
-                <button class="chat-btn">
+                <button class="chat-btn"  data-modal="chat_modal">
                     <i class="fas fa-comment"></i>
                     <!-- Chat -->
                 </button>
@@ -1606,6 +1621,28 @@
     </div>
 
 
+
+<!-- chat window -->
+<div id="chat_modal" class="modal">
+    <div class="modal-content">
+        <span class="close_button_div"> <span class="close">&times;</span></span>
+        <div class="modal-header">
+            <h3><i class="fa-regular fa-comments"></i> Chat </h3>
+        </div>
+        <div class="modal-body">
+            <div class="chatwin-messages">
+                <div class="chatwin-msg chatwin-msg-user">Hi, I need help!</div>
+                <div class="chatwin-msg chatwin-msg-agent">Sure! How can I assist you?</div>
+            </div>
+            <div class="chatwin-input-area">
+                <input type="text" class="chatwin-input" placeholder="Type your message...">
+                <button class="chatwin-send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Models End -->
 
     <!-- <div class="custom-card">
@@ -1663,6 +1700,7 @@
             const overflow = document.getElementById('overflowCount');
             const countwrapper = document.getElementById('count-wrapper');
             const roulette = document.getElementById('roulette');
+            const roulette_ball = document.getElementById('roulette_ball');
             const overflowLeftTable = document.getElementById('overflowLeftTable');
             const leftTable = document.getElementById('leftTable');
 
@@ -1690,12 +1728,14 @@
             $('#attachCount').show();
             $('#count-wrapper').hide();
             $('#roulette').show();
+            $('#roulette_ball').show();
             $('#overflowLeftTable').hide();
             $('#fixedDiec').fadeOut('slow');
             setTimeout(function () {
                 // $('#roulette').hide();
                 // $('#fixedDiec').show();
                 $('#roulette').fadeOut('slow');
+                $('#roulette_ball').hide();
                 $('#fixedDiec').fadeIn('slow');
             }, 5000);
         }
