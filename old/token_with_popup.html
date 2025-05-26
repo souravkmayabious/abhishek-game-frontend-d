@@ -319,6 +319,8 @@
             font-weight: bold;
             cursor: pointer;
             border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            user-select: none;
         }
 
         .chip-1 {
@@ -860,6 +862,27 @@
             font-size: 24px;
             cursor: pointer;
         }
+
+        .bet-btn:active ,.btn:active {
+            transform: scale(1.2); 
+            background-color: rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 2px dotted lime;
+        }
+
+        .chip:active {
+            transform: scale(1.2); 
+            background-color:  rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 5px dotted lime;
+        }
+
+        .action-btn:active , .stat-item:active{
+            transform: scale(1.1); 
+            background-color:  rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 2px dotted lime;
+        }
     </style>
 </head>
 
@@ -1022,9 +1045,9 @@
                 </button>
 
                 <div class="bet-amount">
-                    <button class="bet-btn"> + </button>
+                    <button class="bet-btn plus"> + </button>
                     <span class="bet-amount-value">$28,355.00</span>
-                    <button class="bet-btn"> - </button>
+                    <button class="bet-btn minus"> - </button>
                 </div>
 
                 <button class="bet-btn">
@@ -1601,15 +1624,15 @@
         // JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function () {
             // Chip selection
-            const chips = document.querySelectorAll('.chip');
-            chips.forEach(chip => {
-                chip.addEventListener('click', function () {
-                    // Remove active class from all chips
-                    chips.forEach(c => c.style.transform = '');
-                    // Add active class to clicked chip
-                    this.style.transform = 'scale(1.1)';
-                });
-            });
+            // const chips = document.querySelectorAll('.chip');
+            // chips.forEach(chip => {
+            //     chip.addEventListener('click', function () {
+            //         // Remove active class from all chips
+            //         chips.forEach(c => c.style.transform = '');
+            //         // Add active class to clicked chip
+            //         this.style.transform = 'scale(1.1)';
+            //     });
+            // });
 
             // Timer countdown simulation
             let timeLeft = 60;
@@ -1715,6 +1738,24 @@
             document.getElementById('popup').style.display = 'none';
         }
     </script>
+
+<script>
+    $(document).ready(function() {
+    $('.plus').click(function() {
+        let span = $(this).siblings('.bet-amount-value');
+        let value = parseInt(span.text().replace(/\D/g, ''));
+        value += 100;
+        span.text('$' + value);
+    });
+
+    $('.minus').click(function() {
+        let span = $(this).siblings('.bet-amount-value');
+        let value = parseInt(span.text().replace(/\D/g, ''));
+        value = Math.max(0, value - 100);
+        span.text('$' + value);
+    });
+});
+</script>
 
 
 
