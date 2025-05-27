@@ -1832,8 +1832,11 @@
       }
     });
 
-    $('.bet-btn, .btn, .chip, .action-btn, .stat-item').on('click', function() {
-        $('#click-sound')[0].play();
+    $('.bet-btn, .btn, .chip, .action-btn, .stat-item, .tab-button ,.modal_footer_btn_single,.modal-single-bg-card, .close_button_div,.form-select,.slider,.roulette,.roulette_ball').on('click', function() {
+            console.log('Clicked:', this);
+        let sound = $('#click-sound')[0];
+        sound.currentTime = 0;
+        sound.play();
     });
 
 
