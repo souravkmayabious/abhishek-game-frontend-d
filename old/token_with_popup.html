@@ -737,12 +737,12 @@
 
         .ofb9 {
             top: 5%;
-            left: 23%;
+            left: 23.5%;
         }
 
         .ofb12 {
             top: 5%;
-            left: 30%;
+            left: 29%;
         }
 
         .ofb15 {
@@ -791,6 +791,36 @@
             writing-mode: vertical-lr;
             text-orientation: mixed;
             font-weight: bold;
+        }
+
+
+        .ofb2{
+            top: 27%;
+            left: 9%;
+        }
+
+
+
+
+        .ofb1{
+            top: 49%;
+            left: 9%;
+        }
+
+
+
+        
+        .ofb1st12{
+            top: 68%;
+            left: 17%;
+        }
+
+
+
+
+        .ofb1-18{
+            top: 85%;
+            left: 9%;
         }
 
         .count-wrapper,
@@ -897,6 +927,103 @@
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 2px dotted lime;
         }
+
+       @media (max-width: 900px) and (orientation: landscape) {
+            .overflowButtons{
+                padding: 2px 4px;
+                font-size: 11px;
+            }
+            .ofb0 {
+                top: 11%;
+                left: 2%;
+                font-weight: bold;
+            }
+            .ofb3 {   
+                top: 4%;
+                left: 9%;
+            }
+            .ofb6 {
+                top: 4%;
+                left: 16%;
+            }
+            .ofb9 {
+                top: 4%;
+                left: 23%;
+            }
+            .ofb12 {
+                top: 4%;
+                left: 29%;
+            }
+            .ofb15 {
+                top: 4%;
+                left: 36%;
+            }
+            .ofb18 {
+                top: 4%;
+                left: 43.5%;
+            }
+            .ofb21 {
+                top: 4%;
+                left: 50.5%;
+            }
+            .ofb24 {
+                top: 4%;
+                left: 58%;
+            }
+            .ofb27 {
+                top: 4%;
+                left: 65%;
+            }
+            .ofb30 {
+                top: 4%;
+                left: 72%;
+            }
+            .ofb33 {
+                top: 4%;
+                left: 79%;
+            }
+            .ofb36 {
+                top: 4%;
+                left: 86%;
+            }
+            .ofb2to1 {
+                top: 1%;
+                left: 93%;
+                writing-mode: vertical-lr;
+                text-orientation: mixed;
+                font-weight: bold;
+                font-size: 9px;
+            }
+
+
+            .ofb2{
+                top: 26.5%;
+                left: 9%;
+            }
+
+
+
+
+            .ofb1{
+                top: 48.5%;
+                left: 9%;
+            }
+
+
+            .ofb1st12{
+                top: 68%;
+                left: 17%;
+            }
+
+
+
+
+            .ofb1-18{
+                top: 85%;
+                left: 9%;
+            }
+        }
+
     </style>
 </head>
 
@@ -1040,6 +1167,22 @@
                 <p class="overflowButtons ofb33" onclick="rotateDisk('33')">33</p>
                 <p class="overflowButtons ofb36" onclick="rotateDisk('36')">36</p>
                 <p class="overflowButtons ofb2to1" onclick="rotateDisk('2to1')">2 to 1</p>
+
+
+
+                <p class="overflowButtons ofb2" onclick="rotateDisk('2')">2</p>
+
+
+
+
+                <p class="overflowButtons ofb1" onclick="rotateDisk('1')">1</p>
+
+
+
+                <p class="overflowButtons ofb1st12" onclick="rotateDisk('1st12')">1st 12</p>
+
+
+                <p class="overflowButtons ofb1-18" onclick="rotateDisk('1-18')">1 - 18</p>
             </div>
 
 
