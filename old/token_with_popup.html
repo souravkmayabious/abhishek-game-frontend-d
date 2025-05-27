@@ -1178,7 +1178,7 @@
                     <div class="form-row">
                         <label class="form-label"><i class="fa-solid fa-music"></i>&nbsp;&nbsp;Background Music</label>
                         <label class="switch">
-                            <input type="checkbox"  id="music-toggle" checked>
+                            <input type="checkbox"  id="music-toggle" >
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -1660,6 +1660,8 @@
   <source src="mp3/casino-bg.mp3" type="audio/mpeg" />
 </audio>
 
+<audio id="click-sound" src="mp3/button-click.mp3" preload="auto" style="display:none;"></audio>
+<audio id="spin-sound" src="mp3/roulette spin.mp3" preload="auto" style="display:none;"></audio>
 
     <script>
         // JavaScript for interactive elements
@@ -1735,12 +1737,17 @@
             $('#roulette_ball').show();
             $('#overflowLeftTable').hide();
             $('#fixedDiec').fadeOut('slow');
+            let sound = $('#spin-sound')[0];
+            sound.currentTime = 0;
+            sound.play();
             setTimeout(function () {
                 // $('#roulette').hide();
                 // $('#fixedDiec').show();
                 $('#roulette').fadeOut('slow');
                 $('#roulette_ball').hide();
                 $('#fixedDiec').fadeIn('slow');
+                sound.pause();
+                sound.currentTime = 0;
             }, 5000);
         }
 
@@ -1824,6 +1831,12 @@
         music.currentTime = 0; // reset to start
       }
     });
+
+    $('.bet-btn, .btn, .chip, .action-btn, .stat-item').on('click', function() {
+        $('#click-sound')[0].play();
+    });
+
+
   });
 </script>
 
