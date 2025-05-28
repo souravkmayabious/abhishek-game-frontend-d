@@ -1995,6 +1995,22 @@
         }
 
 
+        $('.tab-button').click(function() {
+            // // Remove active class from all buttons and add inactive
+            // $('.tab-button').removeClass('tab-active').addClass('tab-inactive');
+            // // Add active to clicked button and remove inactive
+            // $(this).addClass('tab-active').removeClass('tab-inactive');
+                // Find the closest modal or container
+                var $container = $(this).closest('.leaderboard-tabs');
+
+                // Remove active from all buttons in this container only
+                $container.find('.tab-button').removeClass('tab-active').addClass('tab-inactive');
+
+                // Activate the clicked button
+                $(this).addClass('tab-active').removeClass('tab-inactive');
+        });
+
+
 //   });
 </script>
 
