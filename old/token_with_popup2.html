@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Twister - Casino Game</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="./modals.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        :root {
+            --primary-color: #800040;
+            --secondary-color: #5e0030;
+            --accent-color: #ffcc00;
+            --text-color: #ffffff;
+            --button-green: #4CAF50;
+            --button-red: #f44336;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: 'Arial', sans-serif; */
+
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            max-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--accent-color);
+            position: fixed;
+            z-index: 100;
+            width: 100%;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            max-height: 20%;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* Internet Explorer 10+ */
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .game-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        .stat-icon {
+            font-size: 16px;
+            color: var(--accent-color);
+        }
+
+        .timer {
+            background-color: #3a0020;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            border: 1px solid #550030;
+            margin: 0 10px;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-green {
+            background-color: var(--button-green);
+            color: white;
+        }
+
+        .btn2 {
+            padding: 5px 10px;
+            border-radius: 2px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .btn-transparent {
+            background-color: transparent;
+            height: 30px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .user-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 10%;
+            background-color: #ffcc00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Main Game Area */
+        .game-container {
+            flex: 1;
+            display: flex;
+            position: relative;
+        }
+
+        .main-game-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 80px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: absolute;
+            top: 70px;
+            /* below header */
+            right: 0;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+
+        .team-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .team-avatars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .team-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .avatar-1 {
+            background-color: #e91e63;
+        }
+
+        .avatar-2 {
+            background-color: #9c27b0;
+        }
+
+        .avatar-3 {
+            background-color: #3f51b5;
+        }
+
+        .avatar-4 {
+            background-color: #2196f3;
+        }
+
+        .add-more {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Footer Game Controls */
+        .game-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+        }
+
+        .left-controls,
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .bet-amount {
+            background-color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .bet-amount-value {
+            color: var(--accent-color);
+        }
+
+        .bet-btn {
+            background-color: var(--button-green);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .chips-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .chip {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .chip-1 {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .chip-2 {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        .chip-5 {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .chip-10 {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .chip-25 {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .spin-btn {
+            width: 60px;
+            height: 60px;
+            /* background-color: var(--accent-color); */
+            background-color: #c91971;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .volume-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .bet-amount {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 150px;
+            }
+
+            .game-stats {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                gap: 1px;
+            }
+
+            .game-stats {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .chips-container {
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .btn {
+                padding: 4px 7px;
+                border-radius: 5px;
+                gap: 3px;
+            }
+
+            .timer {
+                padding: 4px 7px;
+                border-radius: 5px;
+                margin: 0 5px;
+            }
+
+            .stat-item {
+                gap: 2px;
+                padding: 2px 5px;
+                border-radius: 5px;
+            }
+
+            .action-btn {
+                width: 23px;
+                height: 23px;
+                border-radius: 50%;
+            }
+
+            .bet-btn {
+
+                border-radius: 2px;
+                padding: 4px 7px;
+                gap: 2px;
+            }
+
+            .bet-amount {
+                gap: 2px;
+                padding: 4px;
+            }
+
+            .bet-amount-value {
+                font-size: 12px;
+            }
+
+            .chat-btn {
+                border-radius: 20%;
+                width: 20px;
+                height: 20px;
+            }
+
+            .left-controls,
+            .right-controls {
+                gap: 5px;
+            }
+
+            .nav-btn {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+
+            .chip {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+
+            }
+
+            .volume-btn {
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-buttons {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .game-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .left-controls,
+            .right-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .action-buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 4px 7px;
+                border-radius: 5px;
+                gap: 3px;
+            }
+        }
+
+        /* Show this overlay only in portrait */
+        .portrait-warning {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            background: #000;
+            color: #fff;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media screen and (orientation: portrait) {
+            .portrait-warning {
+                display: flex;
+            }
+
+            .main-content {
+                display: none;
+                /* Hide main content in portrait */
+            }
+        }
+
+        .game-visuals {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background-img {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .table-img {
+            position: absolute;
+            width: 100vw;
+            /* max-width: 1000px; */
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 2;
+            height: 95vh;
+        }
+
+        .table-left {
+            position: absolute;
+            z-index: 3;
+            /* transform: translateY(60%); */
+            /* transform: translate(10%, 60%); */
+            max-width: 15%;
+            left: 4%;
+            top: 40%;
+            /* left: 180px; */
+            cursor: pointer;
+        }
+
+        .table-below {
+            position: absolute;
+            z-index: 3;
+            max-width: 41%;
+            /* transform: translate(70%, 240%); */
+            left: 30%;
+            top: 52%;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+
+            .table-img {
+                position: absolute;
+                width: 100vw;
+                height: 90vh;
+            }
+
+
+            /* .table-left {
+                position: absolute;
+                z-index: 3;
+                transform: translateY(60%); 
+                max-width: 100px;
+                left: 20px;
+                transform: translate(30%, 70%);
+            } */
+
+            /* .table-below {
+                position: absolute;
+                z-index: 3;
+               transform: translateY(60%);
+                max-width: 350px;
+                 left: 150px;
+                bottom: 75px; 
+                transform: translate(50%, 220%);
+                cursor: pointer;
+            } */
+
+            /* .newCountTable{
+                transform: translate(150%, 220%);
+                max-width: 250px;
+            } */
+        }
+
+        /* .newCountTable{
+            z-index: 4;
+            position: absolute;
+            max-width: 570px;
+            transform: translate(72%, 120%);
+            backdrop-filter: blur(10px);
+    
+        }
+
+        .overflowButtons{
+            z-index: 5;
+            position: absolute;
+            transform: translate(172%, 120%);
+            background-color: red;
+            padding: 10px;
+            cursor: pointer;
+        } */
+
+        .count-wrapper {
+            /* position: absolute;
+            transform: translate(72%, 120%);
+            max-width: 570px;
+            z-index: 4; */
+            position: absolute;
+            max-width: 45%;
+            z-index: 4;
+            left: 25%;
+            top: 35%;
+        }
+
+        .newCountTable {
+            display: block;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .overflowButtons {
+            position: absolute;
+            padding: 6px 10px;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .overflowButtons:hover {
+            border: 1px solid lawngreen;
+        }
+
+        /* Position each button individually */
+        .ofb0 {
+            top: 22%;
+            left: 1%;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .ofb3 {
+            /* top: 10px;
+            left: 50px; */
+            top: 5%;
+            left: 9%;
+            /* background-color: red; */
+        }
+
+        .ofb6 {
+            /* top: 10px;
+            left: 90px; */
+            top: 5%;
+            left: 16%;
+        }
+
+        .ofb9 {
+            top: 5%;
+            left: 23.5%;
+        }
+
+        .ofb12 {
+            top: 5%;
+            left: 29%;
+        }
+
+        .ofb15 {
+            top: 5%;
+            left: 35%;
+        }
+
+        .ofb18 {
+            top: 5%;
+            left: 42%;
+        }
+
+        .ofb21 {
+            top: 5%;
+            left: 49%;
+        }
+
+        .ofb24 {
+            top: 5%;
+            left: 56%;
+        }
+
+        .ofb27 {
+            top: 5%;
+            left: 63%;
+        }
+
+        .ofb30 {
+            top: 5%;
+            left: 70%;
+        }
+
+        .ofb33 {
+            top: 5%;
+            left: 77%;
+        }
+
+        .ofb36 {
+            top: 5%;
+            left: 84%;
+        }
+
+        .ofb2to1 {
+            top: 2%;
+            left: 91%;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            font-weight: bold;
+        }
+
+
+        .ofb2{
+            top: 27%;
+            left: 9%;
+        }
+
+
+
+
+        .ofb1{
+            top: 49%;
+            left: 9%;
+        }
+
+
+
+        
+        .ofb1st12{
+            top: 68%;
+            left: 17%;
+        }
+
+
+
+
+        .ofb1-18{
+            top: 85%;
+            left: 9%;
+        }
+
+        .count-wrapper,
+        .count-wrapper2 {
+            display: none;
+        }
+
+        .roulette {
+            z-index: 6;
+            position: absolute;
+            /* top: 75px;
+            left: 480px;
+            width: 400px; */
+            top: 17%;
+            left: 35%;
+            width: 30%;
+            animation: spin 10s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% {  transform: rotate(360deg); }
+        }
+
+        
+        .roulette_ball {
+            z-index: 7;
+            position: absolute;
+            top: 24%;
+            left: 39.4%;
+            width: 4%;
+            animation: spinBall 5s linear infinite;
+            transform-origin: 268% 268%; /* Custom pivot point */
+        }
+
+        @keyframes spinBall {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-720deg); } /* Anticlockwise */
+        }
+
+
+        .table-img-fixedDiec {
+            z-index: 4;
+            position: absolute;
+            width: 30%;
+            top: 15%;
+            left: 35%;
+        }
+
+
+
+        .count-wrapper2 {
+            /* position: absolute; */
+            /* transform: translate(72%, 120%); */
+            /* max-width: 570px; */
+            z-index: 5;
+        }
+
+        .overflowLeftTable {
+            display: block;
+            position: absolute;
+            z-index: 7;
+            width: 50%;
+            top: 50%;
+            left: 24%;
+            /* width: 100%; */
+            backdrop-filter: blur(10px);
+        }
+
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .bet-btn:active ,.btn:active,.bet-btn:hover ,.btn:hover {
+            transform: scale(1); 
+            background-color: rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 0.5px dotted lime;
+        }
+
+        .chip:active , .chip:hover{
+            transform: scale(1.1); 
+            background-color:  rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 5px dotted lime;
+        }
+
+        .action-btn:active , .stat-item:active , .action-btn:hover , .stat-item:hover{
+            transform: scale(1.1); 
+            background-color:  rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 2px dotted lime;
+        }
+
+       @media (max-width: 850px) and (orientation: landscape) {
+            .overflowButtons{
+                padding: 2px 4px;
+                font-size: 11px;
+            }
+            .ofb0 {
+                top: 11%;
+                left: 2%;
+                font-weight: bold;
+            }
+            .ofb3 {   
+                top: 4%;
+                left: 9%;
+            }
+            .ofb6 {
+                top: 4%;
+                left: 16%;
+            }
+            .ofb9 {
+                top: 4%;
+                left: 23%;
+            }
+            .ofb12 {
+                top: 4%;
+                left: 29%;
+            }
+            .ofb15 {
+                top: 4%;
+                left: 36%;
+            }
+            .ofb18 {
+                top: 4%;
+                left: 43.5%;
+            }
+            .ofb21 {
+                top: 4%;
+                left: 50.5%;
+            }
+            .ofb24 {
+                top: 4%;
+                left: 58%;
+            }
+            .ofb27 {
+                top: 4%;
+                left: 65%;
+            }
+            .ofb30 {
+                top: 4%;
+                left: 72%;
+            }
+            .ofb33 {
+                top: 4%;
+                left: 79%;
+            }
+            .ofb36 {
+                top: 4%;
+                left: 86%;
+            }
+            .ofb2to1 {
+                top: 1%;
+                left: 93%;
+                writing-mode: vertical-lr;
+                text-orientation: mixed;
+                font-weight: bold;
+                font-size: 9px;
+            }
+
+
+            .ofb2{
+                top: 26.5%;
+                left: 9%;
+            }
+
+
+
+
+            .ofb1{
+                top: 48.5%;
+                left: 9%;
+            }
+
+
+            .ofb1st12{
+                top: 68%;
+                left: 17%;
+            }
+
+
+
+
+            .ofb1-18{
+                top: 85%;
+                left: 9%;
+            }
+        }
+
+        .marker {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            transform: translate(-50%, -50%); /* Center marker on click point */
+            z-index: 4;
+        }
+
+        .image-container-for-click {
+            position: relative;
+            display: inline-block;
+            left: 30%;
+            top: 49%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="popup" onclick="goFullscreen()">
+        Click here to enter Fullscreen
+    </div>
+
+    <div class="portrait-warning">
+        Please rotate your device to landscape mode.
+    </div>
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="image/logo.png" alt="Token Twister Logo" class="logo">
+                <span>Token Twister</span>
+            </div>
+
+            <div class="game-stats">
+                <div class="stat-item">
+                    <!-- <i class="fas fa-trophy stat-icon"></i> -->
+                    <img src="image/classic.png">
+                    <span>Classic</span>
+                </div>
+                <div class="stat-item">
+                    <!-- <i class="fas fa-users stat-icon"></i> -->
+                    <img src="image/userss.png">
+                    <span>1,887</span>
+                </div>
+                <div class="stat-item">
+                    <!-- <i class="fas fa-bolt stat-icon"></i> -->
+                    <img src="image/bolt.png">
+                    <span>453</span>
+                </div>
+                <div class="stat-item">
+                    <!-- <i class="fas fa-coins stat-icon"></i> -->
+                    <img src="image/coinn.png">
+                    <span>312,332</span>
+                </div>
+            </div>
+
+            <div class="timer"><img src="image/clock-three.png"> 00:60</div>
+
+            <div class="header-buttons">
+                <button class="btn btn-green" data-modal="create_room_modal">
+                    Room
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <button class="btn2 btn-transparent" data-modal="challenges_model">
+                    <img src="image/target-solid.png" width="25">
+                </button>
+                <button class="btn2 btn-transparent" data-modal="game_rule_modal">
+                    <img src="image/help.png" width="25">
+                </button>
+                <button class="btn2 btn-transparent" data-modal="game_achivment_modal">
+                    <img src="image/awardd.png" width="25">
+                </button>
+                <button class="btn btn-outline">
+                    12,898,00
+                </button>
+                <button class="btn btn-green">
+                    <i class="fa-solid fa-wallet"></i> Deposit
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <button class="btn btn-outline" data-modal="settings_modal">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="user-avatar"><img src="image/userr.png" width="30"></div>
+            </div>
+        </header>
+
+        <!-- Main Game Container -->
+        <div class="game-container">
+            <!-- Main Game Area -->
+            <!-- <div class="main-game-area">-->
+            <!-- Navigation Buttons -->
+            <!-- <div class="nav-buttons">
+                    <button class="nav-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="nav-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div> -->
+
+
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="team-section">
+                    <div class="section-title">Invite Team?</div>
+                    <div class="team-avatars">
+                        <div class="team-avatar avatar-1">1</div>
+                        <div class="team-avatar avatar-2">2</div>
+                        <div class="team-avatar avatar-3">3</div>
+                        <div class="team-avatar avatar-4">4</div>
+                        <div class="team-avatar add-more">+3</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="game-visuals">
+            <img class="background-img" src="image/Background.png" alt="Background">
+            <!-- <img class="table-img" src="image/Table_With_Chips_and_wheel-removebg-preview.png" alt="Game Table"> -->
+            <img class="table-img" src="newImage/OnlyTableNew.png" alt="Game Table">
+            <img class="table-img-fixedDiec" src="newImage/fixedDiec.png" alt="Game Table" id="fixedDiec">
+            <img class="table-left" src="image/Left No. Grid.png" id="leftTable">
+            <div class="image-container-for-click"></div>
+                <img class="table-below" src="newImage/with_no.s.png" id="attachCount">
+            </div>    
+            <div id="popup2" class="popup">
+                <img class="roulette" src="newImage/popUpDice.png" id="roulette" style="display: none;">
+                <img class="roulette_ball" src="newImage/glass_ball.png" id="roulette_ball" style="display: none;">
+            </div>
+            <!-- </div>
+
+        <div> -->
+            <!-- <img src="newImage/Only_box.png" style="display: none;" alt="" class="newCountTable" id="overflowCount">
+            <p class="overflowButtons">3</p> -->
+            <div class="count-wrapper" id="count-wrapper">
+                <!-- <img src="newImage/TablenoBox.png" style="display: none;" alt="" class="newCountTable"
+                    id="overflowCount"> -->
+                <img src="newImage/kindpng_7748246.png" style="display: none;" alt="" class="newCountTable"
+                    id="overflowCount" onclick="rotateDisk('full')">
+                <!-- <p class="overflowButtons ofb0" onclick="rotateDisk('0')">0</p>
+                <p class="overflowButtons ofb3" onclick="rotateDisk('3')">3</p>
+                <p class="overflowButtons ofb6" onclick="rotateDisk('6')">6</p>
+                <p class="overflowButtons ofb9" onclick="rotateDisk('9')">9</p>
+                <p class="overflowButtons ofb12" onclick="rotateDisk('12')">12</p>
+                <p class="overflowButtons ofb15" onclick="rotateDisk('15')">15</p>
+                <p class="overflowButtons ofb18" onclick="rotateDisk('18')">18</p>
+                <p class="overflowButtons ofb21" onclick="rotateDisk('21')">21</p>
+                <p class="overflowButtons ofb24" onclick="rotateDisk('24')">24</p>
+                <p class="overflowButtons ofb27" onclick="rotateDisk('27')">27</p>
+                <p class="overflowButtons ofb30" onclick="rotateDisk('30')">30</p>
+                <p class="overflowButtons ofb33" onclick="rotateDisk('33')">33</p>
+                <p class="overflowButtons ofb36" onclick="rotateDisk('36')">36</p>
+                <p class="overflowButtons ofb2to1" onclick="rotateDisk('2to1')">2 to 1</p> -->
+
+
+
+                <!-- <p class="overflowButtons ofb2" onclick="rotateDisk('2')">2</p>
+
+
+
+
+                <p class="overflowButtons ofb1" onclick="rotateDisk('1')">1</p>
+
+
+
+                <p class="overflowButtons ofb1st12" onclick="rotateDisk('1st12')">1st 12</p>
+
+
+                <p class="overflowButtons ofb1-18" onclick="rotateDisk('1-18')">1 - 18</p> -->
+            </div>
+
+
+            <div class="count-wrapper2" id="count-wrapper2">
+                <img src="newImage/Asset_1@2x.png" style="display: none;" alt="" class="overflowLeftTable"
+                    id="overflowLeftTable">
+            </div>
+
+
+        </div>
+
+        <!-- Footer Game Controls -->
+        <div class="game-controls">
+            <div class="left-controls">
+                <button class="chat-btn"  data-modal="chat_modal">
+                    <i class="fas fa-comment"></i>
+                    <!-- Chat -->
+                </button>
+
+                <div class="bet-amount">
+                    <button class="bet-btn plus"> + </button>
+                    <span class="bet-amount-value">$28,355.00</span>
+                    <button class="bet-btn minus"> - </button>
+                </div>
+
+                <button class="bet-btn">
+                    <!-- <i class="fas fa-coins"></i> -->
+                    <img src="image/bet.png" width="18" />
+                    BET
+                </button>
+            </div>
+
+            <div class="chips-container">
+                <button class="nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="chip chip-1">1</div>
+                <div class="chip chip-2">2</div>
+                <div class="chip chip-5">5</div>
+                <div class="chip chip-10">10</div>
+                <div class="chip chip-25">25</div>
+                <button class="nav-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="right-controls">
+                <div class="action-buttons">
+                    <button class="action-btn">
+                        <!-- <i class="fas fa-undo"></i> -->
+                        <img src="image/backk.png" width="22" />
+                    </button>
+                    <button class="action-btn" id="crossAll">
+                        <!-- <i class="fas fa-times"></i> -->
+                        <img src="image/crosss.png" width="22" />
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                    <button class="action-btn spin-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <button class="volume-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Models Start -->
+
+    <!-- settings_modal -->
+    <div id="settings_modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close_button_div"> <span class="close">&times;</span></span>
+            <div class="modal-header">
+                <h3> <i class="fa-solid fa-gear"></i> Game Settings </h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="custom-card">
+                    <div class="custom-card-header"><i class="fa-solid fa-dice"></i> Game Mode</div>
+                    <!-- Selectable Box Row -->
+                    <div class="icon-box-row">
+                        <div class="icon-box selected" onclick="toggleSelect(this)">
+                            <div class="fab-icon"><i class="fa-solid fa-dice-six"></i></div>
+                            <div class="icon-label">Classic</div>
+                        </div>
+                        <div class="icon-box icon-box2" onclick="toggleSelect(this)">
+                            <div class="fab-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                            <div class="icon-label">Lightning</div>
+                        </div>
+                        <div class="icon-box icon-box3" onclick="toggleSelect(this)">
+                            <div class="fab-icon"><i class="fa-solid fa-gift"></i></div>
+                            <div class="icon-label">Bonus</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="custom-card">
+                    <div class="custom-card-header"><i class="fa-solid fa-money-check-dollar"></i> Curreny & Chip</div>
+
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-solid fa-coins"></i>&nbsp;&nbsp;Currency</label>
+                        <select class="form-select">
+                            <option value="1">USD ($)</option>
+                            <option value="2">INR</option>
+                            <option value="3">TAKA</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-brands fa-nfc-directional"></i>&nbsp;&nbsp;Default
+                            Bet</label>
+                        <input type="range" class="form-range" min="0" max="100" />
+                        <label class="form-label">$100</label>
+                    </div>
+                </div>
+
+
+                <div class="custom-card">
+                    <div class="custom-card-header"><i class="fa-solid fa-money-check-dollar"></i> Audio & Visual</div>
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-brands fa-soundcloud"></i>&nbsp;&nbsp;Sound
+                            Effects</label>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-solid fa-music"></i>&nbsp;&nbsp;Background Music</label>
+                        <label class="switch">
+                            <input type="checkbox"  id="music-toggle" >
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-brands fa-rocketchat"></i>&nbsp;&nbsp;Chat Notification
+                            Sound</label>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label"><i
+                                class="fa-brands fa-creative-commons-remix"></i>&nbsp;&nbsp;Animation and
+                            effects</label>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="custom-card">
+                    <div class="custom-card-header"><i class="fa-solid fa-sd-card"></i> Rooms Settings</div>
+                    <div class="form-row">
+                        <label class="form-label"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Manage Rooms</label>
+                        <select class="form-select">
+                            <option value="1">6</option>
+                            <option value="2">5</option>
+                            <option value="3">4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="custom-card">
+                    <div class="custom-card-header"><i class="fa-solid fa-person-shelter"></i> Slot Games Settings
+                        <button class="slot_game_button">Save</button>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="modal_footer_btn settings_modal_buttons_postions">
+                    <button class="save_modal modal_footer_btn_single" style="width: 9%;">
+                        <img src="./newImage/save button green.png" />
+                    </button>
+                    <button class="reset_modal modal_footer_btn_single"> <img
+                            src="./newImage/reset to default pink.png" /></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Create room -->
+    <div id="create_room_modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close_button_div"> <span class="close">&times;</span></span>
+            <div class="modal-header">
+                <p> <i class="fa-solid fa-house-chimney"></i> Create Game Room </p>
+            </div>
+            <div class="modal-body">
+                <div class="form-row modal-single-bg-card">
+                    <label class="form-label"><i class="fa-solid fa-house"></i> &nbsp; Room Name</label>
+                    <input type="text" class="form-input" placeholder="Enter room name" />
+                </div>
+                <div class="form-row modal-single-bg-card">
+                    <label class="form-label"><i class="fa-solid fa-gamepad"></i>&nbsp; Game mode</label>
+                    <select class="form-select">
+                        <option value="1">Classic</option>
+                        <!-- <option value="2">INR</option>
+                            <option value="3">TAKA</option> -->
+                    </select>
+                </div>
+
+                <div class="form-row modal-single-bg-card">
+                    <label class="form-label"><i class="fa-solid fa-cube"></i>&nbsp; Private room</label>
+                    <select class="form-select">
+                        <option value="1">Open to all</option>
+                        <!-- <option value="2">INR</option>
+                            <option value="3">TAKA</option> -->
+                    </select>
+                </div>
+                <div class="form-row modal-single-bg-card">
+                    <label class="form-label"><i class="fa-solid fa-toggle-off"></i>&nbsp; Bet limit</label>
+                    <label class="form-label">$10</label>
+                    <input type="range" class="form-range" min="0" max="1000" />
+                    <label class="form-label">$1000</label>
+                </div>
+
+                <div class="form-row modal-single-bg-card" style="margin-bottom: 14%;">
+                    <label class="form-label"><i class="fa-solid fa-users"></i>&nbsp; Max players</label>
+                    <input type="range" class="form-range" min="0" max="20" />
+                    <label class="form-label">10</label>
+                </div>
+           
+                <div class="modal_footer_btn createroom_modal_buttons_postions">
+                    <button class="cancel_modal modal_footer_btn_single">
+                        <img src="./newImage/cancel.png" /></button>
+                    <button class="create_room_modalc modal_footer_btn_single"><img
+                            src="./newImage//create room.png" /></button>
+                </div>
+                <div class="rule_model_footer_div">
+                    <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Challanges model -->
+    <div id="challenges_model" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close_button_div"> <span class="close">&times;</span></span>
+            <div class="modal-header">
+                <h3> <i class="fa-solid fa-bullseye"></i> Challanges </h3>
+
+            </div>
+            <p class="modal-header-sub">Complete challenges to earn reward and boost your status!</p>
+            <!-- <div class="tabmodal">
+                <button class="tablinks active">Daily</button>
+                <button class="tablinks">Weakly</button>
+                <button class="tablinks">Monthly</button>
+            </div> -->
+
+
+
+            <div class="modal-body">
+                <div class="leaderboard-tabs">
+                    <button class="tab-button tab-active">Daily</button>
+                    <button class="tab-button tab-inactive">Weakly</button>
+                    <button class="tab-button tab-inactive">Monthly</button>
+                </div>
+
+                <div class="achievement-cards-container">
+                    <!-- Lucky Streak Card -->
+                    <div class="achievement-card">
+                        <div class="achievement-card__header">
+                            <div class="achievement-card__left">
+                                <div class="achievement-card__icon-container">
+                                    <i class="fa-solid fa-fire"></i>
+                                </div>
+                                <div class="achievement-card__info">
+                                    <h3 class="achievement-card__title">Lucky Streak</h3>
+                                    <p class="achievement-card__description">Win 3 roulette spins in a row</p>
+                                </div>
+                            </div>
+                            <div class="achievement-card__reward">
+                                <div class="achievement-card__reward-amount">+5500</div>
+                                <div class="achievement-card__reward-label">reward</div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card__progress-container">
+                            <div class="achievement-card__progress-header">
+                                <span>Progress</span>
+                                <span>2/3</span>
+                            </div>
+                            <div class="achievement-card__progress-bar-bg">
+                                <div class="achievement-card__progress-bar-fill" style="width: 66.67%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- High Roller Card -->
+                    <div class="achievement-card">
+                        <div class="achievement-card__header">
+                            <div class="achievement-card__left">
+                                <div class="achievement-card__icon-container">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="achievement-card__info">
+                                    <h3 class="achievement-card__title">High Roller</h3>
+                                    <p class="achievement-card__description">Win 3 roulette spins in a row</p>
+                                </div>
+                            </div>
+                            <div class="achievement-card__reward">
+                                <div class="achievement-card__reward-amount">+8000</div>
+                                <div class="achievement-card__reward-label">reward</div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card__progress-container">
+                            <div class="achievement-card__progress-header">
+                                <span>Progress</span>
+                                <span>7500/10000</span>
+                            </div>
+                            <div class="achievement-card__progress-bar-bg">
+                                <div class="achievement-card__progress-bar-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sharpshooter Card -->
+                    <div class="achievement-card">
+                        <div class="achievement-card__header">
+                            <div class="achievement-card__left">
+                                <div class="achievement-card__icon-container">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <div class="achievement-card__info">
+                                    <h3 class="achievement-card__title">Sharpshooter</h3>
+                                    <p class="achievement-card__description">Win 3 roulette spins in a row</p>
+                                </div>
+                            </div>
+                            <div class="achievement-card__reward">
+                                <div class="achievement-card__reward-amount">+2500</div>
+                                <div class="achievement-card__reward-label">reward</div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card__progress-container">
+                            <div class="achievement-card__progress-header">
+                                <span>Progress</span>
+                                <span>3/5</span>
+                            </div>
+                            <div class="achievement-card__progress-bar-bg">
+                                <div class="achievement-card__progress-bar-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Rule model -->
+    <div id="game_rule_modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close_button_div"> <span class="close">&times;</span></span>
+            <div class="modal-header">
+                <h3> <i class="fa-solid fa-circle-info"></i> Game rules </h3>
+            </div>
+            <p class="modal-header-sub">Learn how to play token twister roulette</p>
+            <!-- <div class="tabmodal">
+                <button class="tablinks active">Basic Rule</button>
+                <button class="tablinks">Betting options</button>
+                <button class="tablinks">Game modes</button>
+            </div> -->
+
+
+
+            <div class="modal-body">
+                <div class="leaderboard-tabs">
+                    <button class="tab-button tab-active">Basic Rule</button>
+                    <button class="tab-button tab-inactive">Betting options</button>
+                    <button class="tab-button tab-inactive">Game modes</button>
+                </div>
+                <!-- <div class="modal_footer_btn">
+                    <button class="save_modal2 modal_footer_btn_single"><i class="fa-solid fa-floppy-disk"></i>
+                        CANCEL</button>
+                    <button class="reset_modal2 modal_footer_btn_single"><i class="fa-solid fa-rotate"></i>CREATE
+                        ROOM</button>
+                </div> -->
+
+                <div class="game_rules_modal">
+                    <div class="game_rule_header"><i class="fa-solid fa-info"></i> &nbsp;How to play Token Twister
+                        Roulette</div>
+                    <hr />
+                    <div class="game_rules">
+                        Game Flow <br />
+                        1. Each game round lasts 60 seconds.<br />
+                        2. The first 50 seconds are for placing bets.<br />
+                        3. During the last 10 seconds, betting is closed and the wheel spins.<br />
+                        4. If your bet wins, your winnings are automatically added to your balance.<br />
+                        Roulette Wheel <br /><br />
+
+                        Multiplayer Experience: Engage in real-time roulette games with players worldwide, enhancing the
+                        competitive spirit and social interaction.<br /><br />
+                        Special Game Modes: Beyond the classic European roulette rules, "Token Twister" may offer unique
+                        modes such as:<br />
+                        <ul>
+                            <li>Turbo Mode: Accelerated gameplay for quick rounds.</li>
+                            <li>Team Play: Collaborate with others to achieve collective goals.</li>
+                            <li>Challenge Mode: Face off against specific objectives or opponents.</li>
+                            <li>Visual Enhancements: Incorporation of dynamic visual effects to elevate the gaming
+                                experience,
+                                potentially inspired by innovations in gaming systems that provide roulette games with
+                                visual
+                                effects.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="rule_model_footer_div" style="z-index: 5;">
+                    <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Achivement model -->
+    <div id="game_achivment_modal" class="modal">
+        <div class="modal-content">
+            <span class="close_button_div"> <span class="close">&times;</span></span>
+            <div class="modal-header">
+                <h3> <i class="fa-solid fa-trophy"></i> LeaderBoard </h3>
+            </div>
+
+            <!-- <div class="tabmodal">
+                <button class="tablinks active">Current</button>
+                <button class="tablinks">All time</button>
+            </div> -->
+
+            <div class="modal-body">
+
+                <div class="leaderboard-modal">
+                    <!-- Tab Navigation -->
+                    <div class="leaderboard-tabs">
+                        <button class="tab-button tab-active">Current</button>
+                        <button class="tab-button tab-inactive">All Time</button>
+                        <button class="share-button"><i class="fas fa-share-alt"></i></button>
+                    </div>
+
+                    <!-- Top Player Card -->
+                    <div class="top-player-card">
+                        <div class="player-avatar">
+                            <img src="./newImage/leaderimage.png" alt="Player Avatar">
+                        </div>
+                        <div class="player-info">
+                            <h2 class="player-name">HighRoller777</h2>
+                            <div class="player-amount">$2,500</div>
+                        </div>
+                        <div class="game-info">
+                            <div class="game-type">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name-achivement-1">Fruit Spin</span>
+                            </div>
+                            <div class="win-label game-name-achivement-2">Biggest Win This Round</div>
+                        </div>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <!-- Top Winners Section -->
+                    <div class="winners-section">
+                        <h3 class="section-title-achivement custom-card-header"><i class="fa-solid fa-trophy"></i>&nbsp;&nbsp; Top Winners</h3>
+
+                        <div class="winner-row">
+                            <div class="winner-avatar">
+                                <img src="./newImage/winer.png" alt="Winner Avatar">
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">HighRoller777</div>
+                                <div class="winner-time">2 min ago</div>
+                            </div>
+                            <div class="winner-game">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name">3 Patti</span>
+                            </div>
+                            <div class="winner-amount">$2,500</div>
+                        </div>
+
+                        <div class="winner-row">
+                            <div class="winner-avatar">
+                                <img src="./newImage/winer1.png" alt="Winner Avatar">
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">HighRoller777</div>
+                                <div class="winner-time">4 min ago</div>
+                            </div>
+                            <div class="winner-game">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name">Wingo Lottery</span>
+                            </div>
+                            <div class="winner-amount">$1,800</div>
+                        </div>
+
+                        <div class="winner-row">
+                            <div class="winner-avatar">
+                                <img src="./newImage/winer2.png" alt="Winner Avatar">
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">HighRoller777</div>
+                                <div class="winner-time">5 min ago</div>
+                            </div>
+                            <div class="winner-game">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name">Roulette</span>
+                            </div>
+                            <div class="winner-amount">$1,200</div>
+                        </div>
+
+                        <div class="winner-row">
+                            <div class="winner-avatar">
+                                <img src="./newImage/winer3.png" alt="Winner Avatar">
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">HighRoller777</div>
+                                <div class="winner-time">10 min ago</div>
+                            </div>
+                            <div class="winner-game">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name">Dragon Tiger</span>
+                            </div>
+                            <div class="winner-amount">$950</div>
+                        </div>
+
+                        <div class="winner-row">
+                            <div class="winner-avatar">
+                                <img src="./newImage/winer4.png" alt="Winner Avatar">
+                            </div>
+                            <div class="winner-details">
+                                <div class="winner-name">HighRoller777</div>
+                                <div class="winner-time">15 min ago</div>
+                            </div>
+                            <div class="winner-game">
+                                <span class="game-icon"><i class="fas fa-gamepad"></i></span>
+                                <span class="game-name">Fruit Spin</span>
+                            </div>
+                            <div class="winner-amount">$750</div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="rule_model_footer_div">
+                    <br>
+                    <img src="./newImage/rule_model_footer.png" class="rule_model_footer_img" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- chat window -->
+<div id="chat_modal" class="modal">
+    <div class="modal-content">
+        <span class="close_button_div"> <span class="close">&times;</span></span>
+        <div class="modal-header">
+            <h3><i class="fa-regular fa-comments"></i> Chat </h3>
+        </div>
+        <div class="modal-body">
+            <div class="chatwin-messages">
+                <div class="chatwin-msg chatwin-msg-user">Hi, I need help!</div>
+                <div class="chatwin-msg chatwin-msg-agent">Sure! How can I assist you?</div>
+            </div>
+            <div class="chatwin-input-area">
+                <input type="text" class="chatwin-input" placeholder="Type your message...">
+                <button class="chatwin-send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Models End -->
+
+    <!-- <div class="custom-card">
+  <div class="custom-card-header">
+    Featured
+  </div>
+  <div class="custom-card-body">
+    <h5 class="custom-card-title">Special title treatment</h5>
+    <p class="custom-card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="custom-btn custom-btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+
+<audio id="background-music" loop style="display:none;">
+  <source src="mp3/casino-bg.mp3" type="audio/mpeg" />
+</audio>
+
+<audio id="click-sound" src="mp3/button-click.mp3" preload="auto" style="display:none;"></audio>
+<audio id="spin-sound" src="mp3/roulette spin.mp3" preload="auto" style="display:none;"></audio>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function () {
+            // Chip selection
+            // const chips = document.querySelectorAll('.chip');
+            // chips.forEach(chip => {
+            //     chip.addEventListener('click', function () {
+            //         // Remove active class from all chips
+            //         chips.forEach(c => c.style.transform = '');
+            //         // Add active class to clicked chip
+            //         this.style.transform = 'scale(1.1)';
+            //     });
+            // });
+
+            // Timer countdown simulation
+            let timeLeft = 60;
+            const timerElement = document.querySelector('.timer');
+
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft < 0) {
+                    clearInterval(timerInterval);
+                    timeLeft = 60;
+                }
+
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        });
+    </script>
+
+    <script>
+        // window.addEventListener("orientationchange", function() {
+        //     location.reload(); // Reload page on orientation change if needed
+        // });
+    </script>
+    <script>
+        // document.getElementById('attachCount').addEventListener('click', function () {
+        //     const attach = document.getElementById('attachCount');
+        //     const overflow = document.getElementById('overflowCount');
+        //     const countwrapper = document.getElementById('count-wrapper');
+        //     const roulette = document.getElementById('roulette');
+        //     const roulette_ball = document.getElementById('roulette_ball');
+        //     const overflowLeftTable = document.getElementById('overflowLeftTable');
+        //     const leftTable = document.getElementById('leftTable');
+
+        //     if (attach.style.display !== 'none') {
+        //         attach.style.display = 'none';
+        //         overflow.style.display = 'block';
+        //         countwrapper.style.display = 'block';
+        //         roulette.style.display = 'none';
+        //         overflowLeftTable.style.display = 'none';
+        //         leftTable.style.display = 'block';
+        //     } else {
+        //         attach.style.display = 'block';
+        //         overflow.style.display = 'none';
+        //         countwrapper.style.display = 'none';
+        //         roulette.style.display = 'none';
+        //         overflowLeftTable.style.display = 'block';
+        //         leftTable.style.display = 'none';
+        //     }
+        // });
+
+
+        function rotateDisk(no) {
+            // alert(no)
+            $('#overflowCount').hide();
+            $('#attachCount').show();
+            $('#count-wrapper').hide();
+            $('#roulette').show();
+            $('#roulette_ball').show();
+            $('#overflowLeftTable').hide();
+            $('#fixedDiec').fadeOut('slow');
+            let sound = $('#spin-sound')[0];
+            sound.currentTime = 0;
+            sound.play();
+            setTimeout(function () {
+                // $('#roulette').hide();
+                // $('#fixedDiec').show();
+                $('#roulette').fadeOut('slow');
+                $('#roulette_ball').hide();
+                $('#fixedDiec').fadeIn('slow');
+                sound.pause();
+                sound.currentTime = 0;
+            }, 5000);
+        }
+
+        $('#leftTable').on('click', function () {
+            $('#overflowLeftTable').show();
+            $('#leftTable').hide();
+            $('#count-wrapper').hide();
+            $('#count-wrapper2').show();
+            $('#overflowCount').hide();
+            $('#attachCount').show();
+        });
+
+
+        $('#crossAll').on('click',function(){
+             $('#roulette').hide();
+             $('#fixedDiec').show();
+             $('#overflowLeftTable').hide();
+             $('#count-wrapper').hide();
+             $('#attachCount').show();
+             $('#leftTable').show();
+        })
+
+    </script>
+
+
+
+
+<script>
+    $(document).ready(function() {
+    $('.plus').click(function() {
+        let span = $(this).siblings('.bet-amount-value');
+        let value = parseInt(span.text().replace(/\D/g, ''));
+        value += 100;
+        span.text('$' + value);
+    });
+
+    $('.minus').click(function() {
+        let span = $(this).siblings('.bet-amount-value');
+        let value = parseInt(span.text().replace(/\D/g, ''));
+        value = Math.max(0, value - 100);
+        span.text('$' + value);
+    });
+});
+</script>
+
+<script>
+// $(document).ready(function() {
+  var music = $('#background-music')[0];
+  var toggle = $('#music-toggle');
+
+  function playMusic() {
+    music.play().catch(function(err) {
+      console.log("Autoplay prevented or error:", err);
+    });
+  }
+
+  function stopMusic() {
+    music.pause();
+    music.currentTime = 0; // reset to start
+  }
+
+  // If checked on load, try to play music
+  if (toggle.is(':checked')) {
+    playMusic();
+  }
+
+  // On toggle change, play or pause
+  toggle.change(function() {
+    if ($(this).is(':checked')) {
+      playMusic();
+    } else {
+      stopMusic();
+    }
+  });
+
+
+    $('.bet-btn, .btn, .chip, .action-btn, .stat-item, .tab-button ,.modal_footer_btn_single,.modal-single-bg-card, .close_button_div,.form-select,.slider,.roulette,.roulette_ball').on('click', function() {
+        //    console.log('Clicked:', this);
+        let sound = $('#click-sound')[0];
+        sound.currentTime = 0;
+        sound.play();
+    });
+
+
+    function goFullscreen() {
+            const elem = document.documentElement;
+
+            // if (elem.requestFullscreen) {
+            //     elem.requestFullscreen();
+            // } else if (elem.webkitRequestFullscreen) { /* Safari */
+            //     elem.webkitRequestFullscreen();
+            // } else if (elem.msRequestFullscreen) { /* IE11 */
+            //     elem.msRequestFullscreen();
+            // }
+
+            // Hide the popup after entering fullscreen
+            document.getElementById('popup').style.display = 'none';
+            $('#music-toggle').prop('checked', true);
+            playMusic();
+        }
+
+
+        $('.tab-button').click(function() {
+            // // Remove active class from all buttons and add inactive
+            // $('.tab-button').removeClass('tab-active').addClass('tab-inactive');
+            // // Add active to clicked button and remove inactive
+            // $(this).addClass('tab-active').removeClass('tab-inactive');
+                // Find the closest modal or container
+                var $container = $(this).closest('.leaderboard-tabs');
+
+                // Remove active from all buttons in this container only
+                $container.find('.tab-button').removeClass('tab-active').addClass('tab-inactive');
+
+                // Activate the clicked button
+                $(this).addClass('tab-active').removeClass('tab-inactive');
+        });
+
+
+//   });
+</script>
+
+
+    <script src="modals.js"> </script>
+
+  <script>
+    const markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
+
+    $('#attachCount').on('click', function(e) {
+      const offset = $(this).offset();
+      const clickX = e.pageX - offset.left;
+      const clickY = e.pageY - offset.top;
+        console.log('clickX',clickX);
+        console.log('clickY',clickY);
+      const $marker = $('<img>', {
+        src: markerUrl,
+        class: 'marker',
+        css: {
+          left: clickX + 'px',
+          top: clickY + 'px'
+        }
+      });
+
+      $('.image-container-for-click').append($marker);
+
+    //   setTimeout(() => {
+    //     $marker.remove();
+    //   }, 2000);
+    });
+  </script>
+
+</body>
+
+</body>
+
+</html>
