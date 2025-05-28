@@ -928,7 +928,7 @@
             border: 2px dotted lime;
         }
 
-       @media (max-width: 900px) and (orientation: landscape) {
+       @media (max-width: 850px) and (orientation: landscape) {
             .overflowButtons{
                 padding: 2px 4px;
                 font-size: 11px;
@@ -1916,22 +1916,7 @@
     </script>
 
 
-    <script>
-        function goFullscreen() {
-            const elem = document.documentElement;
 
-            // if (elem.requestFullscreen) {
-            //     elem.requestFullscreen();
-            // } else if (elem.webkitRequestFullscreen) { /* Safari */
-            //     elem.webkitRequestFullscreen();
-            // } else if (elem.msRequestFullscreen) { /* IE11 */
-            //     elem.msRequestFullscreen();
-            // }
-
-            // Hide the popup after entering fullscreen
-            document.getElementById('popup').style.display = 'none';
-        }
-    </script>
 
 <script>
     $(document).ready(function() {
@@ -1952,42 +1937,68 @@
 </script>
 
 <script>
-  $(document).ready(function() {
-    var music = $('#background-music')[0];
-    var toggle = $('#music-toggle');
+// $(document).ready(function() {
+  var music = $('#background-music')[0];
+  var toggle = $('#music-toggle');
 
-    // If checked on load, try to play music
-    if (toggle.is(':checked')) {
-      music.play().catch(function(err) {
-        console.log("Autoplay prevented or error:", err);
-      });
-    }
-
-    // On toggle change, play or pause
-    toggle.change(function() {
-      if ($(this).is(':checked')) {
-        music.play().catch(function(err) {
-          console.log("Autoplay prevented or error:", err);
-        });
-      } else {
-        music.pause();
-        music.currentTime = 0; // reset to start
-      }
+  function playMusic() {
+    music.play().catch(function(err) {
+      console.log("Autoplay prevented or error:", err);
     });
+  }
+
+  function stopMusic() {
+    music.pause();
+    music.currentTime = 0; // reset to start
+  }
+
+  // If checked on load, try to play music
+  if (toggle.is(':checked')) {
+    playMusic();
+  }
+
+  // On toggle change, play or pause
+  toggle.change(function() {
+    if ($(this).is(':checked')) {
+      playMusic();
+    } else {
+      stopMusic();
+    }
+  });
+
 
     $('.bet-btn, .btn, .chip, .action-btn, .stat-item, .tab-button ,.modal_footer_btn_single,.modal-single-bg-card, .close_button_div,.form-select,.slider,.roulette,.roulette_ball').on('click', function() {
-            console.log('Clicked:', this);
+        //    console.log('Clicked:', this);
         let sound = $('#click-sound')[0];
         sound.currentTime = 0;
         sound.play();
     });
 
 
-  });
+    function goFullscreen() {
+            const elem = document.documentElement;
+
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+
+            // Hide the popup after entering fullscreen
+            document.getElementById('popup').style.display = 'none';
+            $('#music-toggle').prop('checked', true);
+            playMusic();
+        }
+
+
+//   });
 </script>
 
 
     <script src="modals.js"> </script>
+
 
 
 </body>
