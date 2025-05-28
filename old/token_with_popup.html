@@ -907,21 +907,21 @@
             cursor: pointer;
         }
 
-        .bet-btn:active ,.btn:active {
+        .bet-btn:active ,.btn:active,.bet-btn:hover ,.btn:hover {
             transform: scale(1); 
             background-color: rgba(230, 81, 106, 0.377);
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 0.5px dotted lime;
         }
 
-        .chip:active {
+        .chip:active , .chip:hover{
             transform: scale(1.1); 
             background-color:  rgba(230, 81, 106, 0.377);
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 5px dotted lime;
         }
 
-        .action-btn:active , .stat-item:active{
+        .action-btn:active , .stat-item:active , .action-btn:hover , .stat-item:hover{
             transform: scale(1.1); 
             background-color:  rgba(230, 81, 106, 0.377);
             transition: transform 0.1s ease, background-color 0.1s ease;
@@ -1980,13 +1980,13 @@
     function goFullscreen() {
             const elem = document.documentElement;
 
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
-                elem.msRequestFullscreen();
-            }
+            // if (elem.requestFullscreen) {
+            //     elem.requestFullscreen();
+            // } else if (elem.webkitRequestFullscreen) { /* Safari */
+            //     elem.webkitRequestFullscreen();
+            // } else if (elem.msRequestFullscreen) { /* IE11 */
+            //     elem.msRequestFullscreen();
+            // }
 
             // Hide the popup after entering fullscreen
             document.getElementById('popup').style.display = 'none';
