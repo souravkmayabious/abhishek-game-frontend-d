@@ -2044,7 +2044,7 @@
 <script>
   $(document).ready(function() {
 
-     var markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
+     var markerUrl = '';
      
     $('.chip').on('click', function() {
       const isActive = $(this).hasClass('activechip');
@@ -2085,28 +2085,30 @@
     //const markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
 
     $('#attachCount').on('click', function(e) {
-      const offset = $(this).offset();
-      const clickX = e.pageX - offset.left;
-      const clickY = e.pageY - offset.top;
-        console.log('clickX',clickX);
-        console.log('clickY',clickY);
-      const $marker = $('<img>', {
-        src: markerUrl,
-        class: 'marker',
-        css: {
-          left: clickX + 'px',
-          top: clickY + 'px'
-        }
-      });
+      if(markerUrl!=''){  
+        const offset = $(this).offset();
+        const clickX = e.pageX - offset.left;
+        const clickY = e.pageY - offset.top;
+            console.log('clickX',clickX);
+            console.log('clickY',clickY);
+        const $marker = $('<img>', {
+            src: markerUrl,
+            class: 'marker',
+            css: {
+            left: clickX + 'px',
+            top: clickY + 'px'
+            }
+        });
 
-      $('.image-container-for-click').append($marker);
+        $('.image-container-for-click').append($marker);
 
-      setTimeout(() => {
-        $marker.remove();
-      }, 6000);
-    });
+        setTimeout(() => {
+            $marker.remove();
+        }, 6000);
 
-    });
+      }
+     });
+   });
   </script>
 
 </body>
