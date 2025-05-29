@@ -1045,6 +1045,11 @@
             transition: transform 0.1s ease, background-color 0.1s ease;
             border: 5px dotted lime;
         }
+        .animated-coin {
+            pointer-events: none;
+            border-radius: 50%;
+            box-shadow: 0 0 15px gold;
+        }
 
     </style>
 </head>
@@ -2077,37 +2082,100 @@
         }else if(no == 25){
              markerUrl = 'newImage/25.png'
         }
-        
-
     }
 
 
     //const markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
 
+    // $('#attachCount').on('click', function(e) {
+    //   if(markerUrl!=''){  
+    //     const offset = $(this).offset();
+    //     const clickX = e.pageX - offset.left;
+    //     const clickY = e.pageY - offset.top;
+    //         console.log('clickX',clickX);
+    //         console.log('clickY',clickY);
+    //     const $marker = $('<img>', {
+    //         src: markerUrl,
+    //         class: 'marker',
+    //         css: {
+    //         left: clickX + 'px',
+    //         top: clickY + 'px'
+    //         }
+    //     });
+
+    //     $('.image-container-for-click').append($marker);
+
+    //     setTimeout(() => {
+    //         $marker.remove();
+    //     }, 6000);
+
+    //   }
+    //  });
+
     $('#attachCount').on('click', function(e) {
-      if(markerUrl!=''){  
-        const offset = $(this).offset();
-        const clickX = e.pageX - offset.left;
-        const clickY = e.pageY - offset.top;
-            console.log('clickX',clickX);
-            console.log('clickY',clickY);
-        const $marker = $('<img>', {
-            src: markerUrl,
-            class: 'marker',
-            css: {
-            left: clickX + 'px',
-            top: clickY + 'px'
+        if (markerUrl !== '') {
+            const offset = $(this).offset();
+            const clickX = e.pageX - offset.left;
+            const clickY = e.pageY - offset.top;
+
+            const $activeChip = $('.chip.activechip');
+
+            if ($activeChip.length > 0) {
+            const chipOffset = $activeChip.offset();
+            const chipWidth = $activeChip.width();
+            const chipHeight = $activeChip.height();
+
+            // Create animated coin clone
+            const $coinClone = $('<img>', {
+                src: markerUrl,
+                class: 'animated-coin',
+                css: {
+                position: 'absolute',
+                left: chipOffset.left + chipWidth / 2 + 'px',
+                top: chipOffset.top + chipHeight / 2 + 'px',
+                width: '60px',
+                height: '60px',
+                transform: 'translate(-50%, -50%) scale(1)',
+                transition: 'all 0.8s ease-in-out',
+                zIndex: 9999
+                }
+            });
+
+            $('body').append($coinClone);
+
+            // Force reflow so transition starts
+            void $coinClone[0].offsetWidth;
+
+            // Move to target
+            $coinClone.css({
+                left: offset.left + clickX + 'px',
+                top: offset.top + clickY + 'px',
+                transform: 'translate(-50%, -50%) scale(1.5) rotateY(720deg)'
+            });
+
+            // After animation ends, place real marker and remove animation
+            setTimeout(() => {
+                $coinClone.remove();
+
+                const $marker = $('<img>', {
+                src: markerUrl,
+                class: 'marker',
+                css: {
+                    left: clickX + 'px',
+                    top: clickY + 'px'
+                }
+                });
+
+                $('.image-container-for-click').append($marker);
+
+                setTimeout(() => {
+                $marker.remove();
+                }, 6000);
+            }, 800); // match the animation duration
             }
-        });
+        }
+    });
 
-        $('.image-container-for-click').append($marker);
-
-        setTimeout(() => {
-            $marker.remove();
-        }, 6000);
-
-      }
-     });
    });
   </script>
 
