@@ -1039,6 +1039,12 @@
             left: 30%;
             top: 49%;
         }
+        .activechip {
+            transform: scale(1.1); 
+            background-color:  rgba(230, 81, 106, 0.377);
+            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 5px dotted lime;
+        }
 
     </style>
 </head>
@@ -2035,8 +2041,48 @@
 
     <script src="modals.js"> </script>
 
-  <script>
-    const markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
+<script>
+  $(document).ready(function() {
+
+     var markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
+     
+    $('.chip').on('click', function() {
+      const isActive = $(this).hasClass('activechip');
+
+      // Remove activechip from all
+      $('.chip').removeClass('activechip');
+
+      // If the clicked chip was not active, activate it
+      if (!isActive) {
+        $(this).addClass('activechip');
+        const selectedValue = $(this).text();
+        console.log('Selected chip:', selectedValue);
+        updateUrlImage(selectedValue);
+      } else {
+        $(this).removeClass('activechip');
+        console.log('Deselected chip',$(this).text());
+      }
+    });
+    
+
+    function updateUrlImage(no){
+        if(no == 1){
+            markerUrl = 'newImage/1.png';
+        }else if(no == 2){
+            markerUrl = 'newImage/2.png'
+        }else if(no == 5){
+            markerUrl = 'newImage/5.png'
+        }else if(no == 10){
+             markerUrl = 'newImage/10.png'
+        }else if(no == 25){
+             markerUrl = 'newImage/25.png'
+        }
+        
+
+    }
+
+
+    //const markerUrl = 'https://png.pngtree.com/png-vector/20220909/ourmid/pngtree-smiley-sticker-face-png-image_6144836.png';
 
     $('#attachCount').on('click', function(e) {
       const offset = $(this).offset();
@@ -2055,9 +2101,11 @@
 
       $('.image-container-for-click').append($marker);
 
-    //   setTimeout(() => {
-    //     $marker.remove();
-    //   }, 2000);
+      setTimeout(() => {
+        $marker.remove();
+      }, 6000);
+    });
+
     });
   </script>
 
