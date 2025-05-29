@@ -1048,7 +1048,6 @@
         .animated-coin {
             pointer-events: none;
             border-radius: 50%;
-            box-shadow: 0 0 15px gold;
         }
 
     </style>
@@ -2009,13 +2008,13 @@
     function goFullscreen() {
             const elem = document.documentElement;
 
-            // if (elem.requestFullscreen) {
-            //     elem.requestFullscreen();
-            // } else if (elem.webkitRequestFullscreen) { /* Safari */
-            //     elem.webkitRequestFullscreen();
-            // } else if (elem.msRequestFullscreen) { /* IE11 */
-            //     elem.msRequestFullscreen();
-            // }
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
 
             // Hide the popup after entering fullscreen
             document.getElementById('popup').style.display = 'none';
@@ -2112,69 +2111,68 @@
     //   }
     //  });
 
-    $('#attachCount').on('click', function(e) {
-        if (markerUrl !== '') {
-            const offset = $(this).offset();
-            const clickX = e.pageX - offset.left;
-            const clickY = e.pageY - offset.top;
+$('#attachCount').on('click', function(e) {
+  if (markerUrl !== '') {
+    const offset = $(this).offset();
+    const clickX = e.pageX - offset.left;
+    const clickY = e.pageY - offset.top;
 
-            const $activeChip = $('.chip.activechip');
+    const $activeChip = $('.chip.activechip');
 
-            if ($activeChip.length > 0) {
-            const chipOffset = $activeChip.offset();
-            const chipWidth = $activeChip.width();
-            const chipHeight = $activeChip.height();
+    if ($activeChip.length > 0) {
+      const chipOffset = $activeChip.offset();
+      const chipWidth = $activeChip.width();
+      const chipHeight = $activeChip.height();
 
-            // Create animated coin clone
-            const $coinClone = $('<img>', {
-                src: markerUrl,
-                class: 'animated-coin',
-                css: {
-                position: 'absolute',
-                left: chipOffset.left + chipWidth / 2 + 'px',
-                top: chipOffset.top + chipHeight / 2 + 'px',
-                width: '40px',
-                height: '40px',
-                transform: 'translate(-50%, -50%) scale(1)',
-                transition: 'all 0.8s ease-in-out',
-                zIndex: 9999
-                }
-            });
-
-            $('body').append($coinClone);
-
-            // Force reflow so transition starts
-            void $coinClone[0].offsetWidth;
-
-            // Move to target
-            $coinClone.css({
-                left: offset.left + clickX + 'px',
-                top: offset.top + clickY + 'px',
-                transform: 'translate(-50%, -50%) scale(1.5) rotateY(720deg)'
-            });
-
-            // After animation ends, place real marker and remove animation
-            setTimeout(() => {
-                $coinClone.remove();
-
-                const $marker = $('<img>', {
-                src: markerUrl,
-                class: 'marker',
-                css: {
-                    left: clickX + 'px',
-                    top: clickY + 'px'
-                }
-                });
-
-                $('.image-container-for-click').append($marker);
-
-                setTimeout(() => {
-                $marker.remove();
-                }, 6000);
-            }, 600); // match the animation duration
-            }
+      // Create the moving clone
+      const $coinClone = $('<img>', {
+        src: markerUrl,
+        class: 'animated-coin',
+        css: {
+          position: 'absolute',
+          left: chipOffset.left + chipWidth / 2 + 'px',
+          top: chipOffset.top + chipHeight / 2 + 'px',
+          width: '60px',
+          height: '60px',
+          transform: 'translate(-50%, -50%)',
+          transition: 'all 0.6s ease-in-out',
+          zIndex: 9999
         }
-    });
+      });
+
+      $('body').append($coinClone);
+
+      // Trigger animation
+      void $coinClone[0].offsetWidth;
+
+      $coinClone.css({
+        left: offset.left + clickX + 'px',
+        top: offset.top + clickY + 'px'
+      });
+
+      // After animation, place static marker and remove clone
+      setTimeout(() => {
+        $coinClone.remove();
+
+        const $marker = $('<img>', {
+          src: markerUrl,
+          class: 'marker',
+          css: {
+            left: clickX + 'px',
+            top: clickY + 'px'
+          }
+        });
+
+        $('.image-container-for-click').append($marker);
+
+        setTimeout(() => {
+          $marker.remove();
+        }, 6000);
+      }, 600); // match transition duration
+    }
+  }
+});
+
 
    });
   </script>
