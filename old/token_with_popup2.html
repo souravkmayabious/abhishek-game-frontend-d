@@ -1836,6 +1836,7 @@
 
 <audio id="click-sound" src="mp3/button-click.mp3" preload="auto" style="display:none;"></audio>
 <audio id="spin-sound" src="mp3/roulette spin.mp3" preload="auto" style="display:none;"></audio>
+<audio id="coin-sound" src="mp3/coins.mp3" preload="auto" style="display:none;"></audio>
 
     <script>
         // JavaScript for interactive elements
@@ -2145,6 +2146,10 @@
 
             // Force reflow so transition starts
             void $coinClone[0].offsetWidth;
+
+            let sound = $('#coin-sound')[0];
+            sound.currentTime = 0;
+            sound.play();
 
             // Move to target
             $coinClone.css({
