@@ -1054,17 +1054,30 @@
         .popuptimer {
             display: none;
             position: absolute;
-            top: 19%;
-            left: 34%;
-            background-color: white;
+            top: 0;
+            left: 0;
             padding: 10px;
-            border: 2px solid black;
             z-index: 9999;
             border-radius: 10px;
+            backdrop-filter: blur(3px);
+            width: 100%;
+            height: 100vh;
         }
-
         .popuptimer img {
-            max-width: 200px;
+           max-width: 250px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomIn 1s linear;
+            animation-fill-mode: forwards;
+        }
+        @keyframes zoomIn {
+            0%{
+               transform: translate(-50%, -50%) scale(0);
+            }100%{ 
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
         #click-blocker {
             position: fixed;
@@ -1073,10 +1086,17 @@
             z-index: 9999;
             cursor: not-allowed;
         }
+        .table-below:active,.table-below:focus,.image-container-for-click:active,.image-container-for-click:focus {
+           -webkit-tap-highlight-color: transparent; /* For WebKit browsers (Chrome, Safari) */
+            tap-highlight-color: transparent;         /* Standard property */
+            background-color: transparent;          /* Re-ensure this */
+            outline: none;                          /* If it's an outline */
+        }
+
     </style>
 </head>
 
-<body>
+<body  oncontextmenu="return false;">
     <div id="popup" onclick="goFullscreen()">
         Click here to enter Fullscreen
     </div>
@@ -1974,10 +1994,10 @@
 </div> -->
 
 <div class="popuptimer" id="startPopuptimer">
-    <img src="./newImage/start.png" alt="Start">
+    <img src="./newImage/start_bet.png" alt="Start">
 </div>
 <div class="popuptimer" id="stopPopuptimer">
-    <img src="./newImage/finish.png" alt="Stop">
+    <img src="./newImage/stop_bet.png" alt="Stop">
 </div>
 
 <audio id="background-music" loop style="display:none;">
