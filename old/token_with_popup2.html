@@ -2176,6 +2176,10 @@
                 setTimeout(() => {
                 $marker.remove();
                 }, 6000);
+
+                sound.pause();          // Pauses the sound
+                sound.currentTime = 0;  // Resets it to the beginning (optional)
+
             }, 600); // match the animation duration
             }
         }
