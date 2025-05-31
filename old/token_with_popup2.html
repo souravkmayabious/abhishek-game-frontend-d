@@ -2160,13 +2160,13 @@
     function goFullscreen() {
             const elem = document.documentElement;
 
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
-                elem.msRequestFullscreen();
-            }
+            // if (elem.requestFullscreen) {
+            //     elem.requestFullscreen();
+            // } else if (elem.webkitRequestFullscreen) { /* Safari */
+            //     elem.webkitRequestFullscreen();
+            // } else if (elem.msRequestFullscreen) { /* IE11 */
+            //     elem.msRequestFullscreen();
+            // }
 
             // Hide the popup after entering fullscreen
             document.getElementById('popup').style.display = 'none';
@@ -2366,7 +2366,7 @@
         updateTimerDisplay(timeLeft);
 
         // Step 1: Show start image for 2 seconds
-        showPopup("startPopuptimer", 2000);
+        showPopup("startPopuptimer", 1000);
 
         setTimeout(() => {
             // Step 2: Start countdown
@@ -2379,7 +2379,9 @@
 
                     // Step 3: Show stop image for 2 seconds
                     showPopup("stopPopuptimer", 2000);
-                    rotateDisk('all',8000); //rotate wheel    
+                    setTimeout(() => {
+                        rotateDisk('all',8000); //rotate wheel    
+                    }, 2000);
                     // Disable clicks on body
                     const blocker = $('<div id="click-blocker"></div>');
                     $('body').append(blocker);
