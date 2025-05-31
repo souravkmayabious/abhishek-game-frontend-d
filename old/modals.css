@@ -953,3 +953,94 @@ input:checked + .slider::before {
       transform: translate(0, -130%);
       bottom: 0;
     }
+
+
+
+
+
+
+
+
+
+
+/* For deposit modal */
+    
+
+
+        .casino-deposit-container {
+            /* min-height: 100vh; */
+           margin-bottom: 50px;
+           font-family: 'Howdy Duck', sans-serif;
+           text-shadow: 2px 2px #78058C;
+        }
+
+       /* .deposit-grid-wrapper {
+            max-width: 90%;
+            margin: 0 auto;
+        } */
+
+        .deposit-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2%;
+            padding: 1%;
+            margin-bottom: 10px;
+        }
+
+        .deposit-card-item {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 1rem;
+            /* padding: 8% 6%; */
+            text-align: center;
+            border: 0.2rem solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .deposit-card-item:hover {
+            transform: translateY(-0.5rem);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.3);
+        }
+
+        .deposit-amount-top {
+            color: #FFFFFF;
+            /* font-size: clamp(1rem, 2.5vw, 1.3rem); */
+            font-weight: bold;
+            margin-bottom: 15%;
+            background-color: #4F0262 !important;
+            padding: 5px;
+            border-radius: 10px 10px 0px 0px; 
+            box-shadow: 1px 2px 5px #A104C8;
+        }
+
+        .casino-chips-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15% 0;
+        }
+
+        .casino-chips-image {
+            width: 40%;
+            max-width: 8rem;
+            height: auto;
+            border-radius: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .casino-chips-image:hover {
+            transform: scale(1.05);
+        }
+
+        .deposit-amount-bottom {
+            color: #FEE025;
+            /* font-size: clamp(1.1rem, 2.8vw, 1.5rem); */
+            font-weight: bold;
+            margin-top: 15%;
+             padding: 5px;
+        }
+
+        /* .deposit-amount-large {
+            font-size: clamp(1.2rem, 3vw, 1.7rem);
+        } */

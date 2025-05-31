@@ -1134,7 +1134,7 @@
                 <button class="btn btn-outline">
                     12,898,00
                 </button>
-                <button class="btn btn-green">
+                <button class="btn btn-green" data-modal="deposit_modal">
                     <i class="fa-solid fa-wallet"></i> Deposit
                 </button>
                 <button class="btn btn-outline">
@@ -1839,6 +1839,127 @@
 </div>
 
 
+
+
+
+<!-- chat window -->
+<div id="deposit_modal" class="modal">
+    <div class="modal-content">
+        <span class="close_button_div"> <span class="close">&times;</span></span>
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-money-check"></i> Deposit </h3>
+        </div>
+        <div class="modal-body">
+             <div class="casino-deposit-container">
+                <div class="deposit-grid-wrapper">
+                    <div class="deposit-grid-layout">
+                        <!-- Row 1 -->
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$5.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">5,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$9.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">30,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">200</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">75,000</div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">500</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">100,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$5.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">500,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$9.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom deposit-amount-large">1,200,000</div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">200</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">175,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">500</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">375,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$5.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">500,000</div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">$9.99</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom">850,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">200</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom deposit-amount-large">1,200,000</div>
+                        </div>
+
+                        <div class="deposit-card-item">
+                            <div class="deposit-amount-top">500</div>
+                            <div class="casino-chips-container">
+                                <img src="./newImage/depositCoin.png" alt="Casino Chips" class="casino-chips-image">
+                            </div>
+                            <div class="deposit-amount-bottom deposit-amount-large">1,900,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Models End -->
 
     <!-- <div class="custom-card">
@@ -2039,19 +2160,19 @@
     function goFullscreen() {
             const elem = document.documentElement;
 
-            // if (elem.requestFullscreen) {
-            //     elem.requestFullscreen();
-            // } else if (elem.webkitRequestFullscreen) { /* Safari */
-            //     elem.webkitRequestFullscreen();
-            // } else if (elem.msRequestFullscreen) { /* IE11 */
-            //     elem.msRequestFullscreen();
-            // }
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
 
             // Hide the popup after entering fullscreen
             document.getElementById('popup').style.display = 'none';
             $('#music-toggle').prop('checked', true);
             startCycle();
-            playMusic();
+            playMusic(); 
         }
 
 
