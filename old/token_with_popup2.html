@@ -1051,6 +1051,28 @@
             box-shadow: 0 0 15px gold;
         }
 
+        .popuptimer {
+            display: none;
+            position: absolute;
+            top: 19%;
+            left: 34%;
+            background-color: white;
+            padding: 10px;
+            border: 2px solid black;
+            z-index: 9999;
+            border-radius: 10px;
+        }
+
+        .popuptimer img {
+            max-width: 200px;
+        }
+        #click-blocker {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: transparent;
+            z-index: 9999;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -1093,7 +1115,7 @@
                 </div>
             </div>
 
-            <div class="timer"><img src="image/clock-three.png"> 00:60</div>
+            <div class="timer"><img src="image/clock-three.png"> 00:10</div>
 
             <div class="header-buttons">
                 <button class="btn btn-green" data-modal="create_room_modal">
@@ -1830,6 +1852,13 @@
   </div>
 </div> -->
 
+<div class="popuptimer" id="startPopuptimer">
+    <img src="./newImage/start.png" alt="Start">
+</div>
+<div class="popuptimer" id="stopPopuptimer">
+    <img src="./newImage/finish.png" alt="Stop">
+</div>
+
 <audio id="background-music" loop style="display:none;">
   <source src="mp3/casino-bg.mp3" type="audio/mpeg" />
 </audio>
@@ -1853,20 +1882,20 @@
             // });
 
             // Timer countdown simulation
-            let timeLeft = 60;
-            const timerElement = document.querySelector('.timer');
+            // let timeLeft = 10;
+            // const timerElement = document.querySelector('.timer');
 
-            const timerInterval = setInterval(() => {
-                timeLeft--;
-                if (timeLeft < 0) {
-                    clearInterval(timerInterval);
-                    timeLeft = 60;
-                }
+            // const timerInterval = setInterval(() => {
+            //     timeLeft--;
+            //     if (timeLeft < 0) {
+            //         clearInterval(timerInterval);
+            //         timeLeft = 10;
+            //     }
 
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }, 1000);
+            //     const minutes = Math.floor(timeLeft / 60);
+            //     const seconds = timeLeft % 60;
+            //     timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            // }, 1000);
         });
     </script>
 
@@ -1903,7 +1932,7 @@
         // });
 
 
-        function rotateDisk(no) {
+        function rotateDisk(no, timer = 5000) {
             // alert(no)
             $('#overflowCount').hide();
             $('#attachCount').show();
@@ -2021,6 +2050,7 @@
             // Hide the popup after entering fullscreen
             document.getElementById('popup').style.display = 'none';
             $('#music-toggle').prop('checked', true);
+            startCycle();
             playMusic();
         }
 
@@ -2187,6 +2217,67 @@
 
    });
   </script>
+
+
+<script>
+    let timeLeft = 10;
+    let timerInterval;
+
+    function showPopup(id, duration) {
+        $(`#${id}`).fadeIn(200);
+        if (duration) {
+            setTimeout(() => {
+                $(`#${id}`).fadeOut(200);
+            }, duration);
+        }
+    }
+
+    function updateTimerDisplay(seconds) {
+        let minutes = Math.floor(seconds / 60);
+        let secs = seconds % 60;
+        $('.timer').text(
+            `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+        );
+    }
+
+    function startCycle() {
+        timeLeft = 10;
+        updateTimerDisplay(timeLeft);
+
+        // Step 1: Show start image for 2 seconds
+        showPopup("startPopuptimer", 2000);
+
+        setTimeout(() => {
+            // Step 2: Start countdown
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay(timeLeft);
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+
+                    // Step 3: Show stop image for 2 seconds
+                    showPopup("stopPopuptimer", 2000);
+                    rotateDisk('all',8000); //rotate wheel    
+                    // Disable clicks on body
+                    const blocker = $('<div id="click-blocker"></div>');
+                    $('body').append(blocker);
+
+                    // Step 4: Wait 8 more seconds (total pause: 10 seconds)
+                    setTimeout(() => {
+                        startCycle(); // Restart
+                        blocker.remove(); // Enable clicks after 
+                        console.log('Click enabled');
+                    }, 8000);
+                }
+            }, 1000);
+        }, 2000); // Wait for "start" image to finish
+    }
+
+    // $(document).ready(function () {
+    //     startCycle();
+    // });
+</script>
 
 </body>
 
