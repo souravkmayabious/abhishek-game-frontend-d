@@ -2403,13 +2403,14 @@
                         rotateDisk('all',8000); //rotate wheel    
                     }, 2000);
                     // Disable clicks on body
-                    const blocker = $('<div id="click-blocker"></div>');
-                    $('body').append(blocker);
-
+                    // const blocker = $('<div id="click-blocker"></div>');
+                    // $('body').append(blocker);
+                    $('.chip').css('pointer-events', 'none').css('opacity', '0.5'); 
                     // Step 4: Wait 8 more seconds (total pause: 10 seconds)
                     setTimeout(() => {
                         startCycle(); // Restart
-                        blocker.remove(); // Enable clicks after 
+                        //blocker.remove(); // Enable clicks after 
+                        $('.chip').css('pointer-events', 'auto').css('opacity', '1');
                         console.log('Click enabled');
                     }, 8000);
                 }
